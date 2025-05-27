@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dx3230llssqwf"]
+
+[ext_resource type="Script" path="res://scripts/trail.gd" id="1_3d0am"]
+
+[sub_resource type="Curve" id="Curve_8p0un"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.976273, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Trail" type="Line2D"]
+show_behind_parent = true
+texture_filter = 1
+width = 5.0
+width_curve = SubResource("Curve_8p0un")
+default_color = Color(0.168627, 1, 1, 1)
+script = ExtResource("1_3d0am")
