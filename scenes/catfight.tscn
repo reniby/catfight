@@ -9,7 +9,9 @@ script = ExtResource("1_rkgal")
 
 [node name="Player" parent="." instance=ExtResource("1_whaxt")]
 position = Vector2(-6.10352e-05, 1.90735e-06)
-scale = Vector2(3.8, 3.84)
+scale = Vector2(3.5, 3.5)
+player = 1
+color = "cyan"
 
 [node name="platforms" type="Node" parent="."]
 
@@ -26,11 +28,25 @@ position = Vector2(-3, -105)
 scale = Vector2(10.08, 1.6)
 
 [node name="platforms5" parent="platforms" instance=ExtResource("1_ffnek")]
-position = Vector2(492, 306)
-scale = Vector2(35.12, 1.6)
+position = Vector2(-10, 306)
+scale = Vector2(51.92, 1.6)
 
 [node name="platforms6" parent="platforms" instance=ExtResource("1_ffnek")]
-position = Vector2(-506, 306)
-scale = Vector2(35.12, 1.6)
+position = Vector2(-567, 6.99997)
+scale = Vector2(1.44, 33.96)
+
+[node name="platforms7" parent="platforms" instance=ExtResource("1_ffnek")]
+position = Vector2(-10, -323)
+scale = Vector2(51.92, 1.6)
+
+[node name="platforms8" parent="platforms" instance=ExtResource("1_ffnek")]
+position = Vector2(560, -9)
+scale = Vector2(1.44, 33.96)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Player2" parent="." instance=ExtResource("1_whaxt")]
+position = Vector2(-44.342, 125)
+scale = Vector2(3.5, 3.5)
+player = 2
+color = "pink"
