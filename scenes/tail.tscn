@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://btbfqgqnok8er"]
 
-[ext_resource type="Script" path="res://scripts/tail.gd" id="1_8qncb"]
+[ext_resource type="Script" uid="uid://bn7gucdmf6kpv" path="res://scripts/tail.gd" id="1_8qncb"]
 [ext_resource type="PackedScene" uid="uid://sr5kfhl6c7yb" path="res://scenes/tail_part.tscn" id="2_np67f"]
 
 [node name="tail" type="Node2D"]

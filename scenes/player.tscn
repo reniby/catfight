@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dsxn5ou3e4h0t"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_0pet2"]
+[ext_resource type="Script" uid="uid://dnbl5raisy02x" path="res://scripts/player.gd" id="1_0pet2"]
 [ext_resource type="Texture2D" uid="uid://wmq22d4jtmld" path="res://icon.svg" id="1_ttfpu"]
 [ext_resource type="PackedScene" uid="uid://dx3230llssqwf" path="res://scenes/trail.tscn" id="5_mmvgc"]
 
@@ -21,4 +21,3 @@ texture = ExtResource("1_ttfpu")
 
 [node name="Trail" parent="." instance=ExtResource("5_mmvgc")]
 position = Vector2(-77.5602, -0.511909)
-default_color = Color(0.168627, 1, 1, 1)

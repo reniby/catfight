@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://dx3230llssqwf"]
 
-[ext_resource type="Script" path="res://scripts/trail.gd" id="1_3d0am"]
+[ext_resource type="Script" uid="uid://g85dtsexyj6y" path="res://scripts/trail.gd" id="1_3d0am"]
 
 [sub_resource type="Curve" id="Curve_8p0un"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.976273, 1), 0.0, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.10297, 0.431658), 0.0, 0.0, 0, 0, Vector2(0.334653, 0.534003), 0.0, 0.0, 0, 0, Vector2(0.570297, 0.48392), 0.0, 0.0, 0, 0, Vector2(0.582178, 0.838861), 0.0, 0.0, 0, 0, Vector2(0.772277, 0.342379), 0.0, 0.0, 0, 0, Vector2(0.976273, 1), 0.0, 0.0, 0, 0]
+point_count = 7
 
 [node name="Trail" type="Line2D"]
 show_behind_parent = true

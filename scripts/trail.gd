@@ -1,6 +1,6 @@
 extends Line2D
 
-@export var length = 750
+@export var length = 200
 var point = Vector2()
 var prev = null
 var active = true
@@ -13,8 +13,8 @@ func _process(delta):
 		
 		point = get_parent().global_position/get_parent().scale
 		add_point(point)
-		add_point(point-Vector2(0.1,0.1))
-		add_point(point-Vector2(0.2,0.2))
+		#add_point(point-Vector2(0.1,0.1))
+		#add_point(point-Vector2(0.2,0.2))
 	else:
 		remove_point(0)
 

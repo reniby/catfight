@@ -7,14 +7,18 @@ const JUMP_VELOCITY = -800.0
 @export var player: int
 @export var color: String
 
+var trail
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
-	var trail = get_node("Trail")
+	trail = get_node("Trail")
 	trail.default_color = color
 
 func _physics_process(delta):
+	check_intersections()
+
 	var left = camera.get_viewport_rect().size.x/2 * -1
 	var right = camera.get_viewport_rect().size.x/2
 	var top = camera.get_viewport_rect().size.y/2 * -1
@@ -50,3 +54,26 @@ func _physics_process(delta):
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 	move_and_slide()
+
+func check_intersections():
+	for i in range(1, trail.points.size()):
+		var a1 = trail.points[i - 1]
+		var a2 = trail.points[i]
+		
+		for j in range(1, trail.points.size()):
+			if abs(i - j) <= 3:
+				continue
+			
+			var b1 = trail.points[j - 1]
+			var b2 = trail.points[j]
+
+			if Geometry2D.segment_intersects_segment(a1, a2, b1, b2) != null:
+				check_betwixt(i-1,j)
+
+func check_betwixt(start,end):
+	#var polygon = Polygon2D.new()
+	var shape = PackedVector2Array(trail.points.slice(min(start,end),max(start,end)+1))
+	#polygon.set_polygon(shape)
+	var p2 = $"../Player2"
+	if Geometry2D.is_point_in_polygon(p2.global_position/p2.global_scale, shape):
+		print("DEATH")
