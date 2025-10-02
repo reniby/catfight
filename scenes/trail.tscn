@@ -9,7 +9,7 @@ point_count = 7
 [node name="Trail" type="Line2D"]
 show_behind_parent = true
 texture_filter = 1
-width = 5.0
+width = 1.0
 width_curve = SubResource("Curve_8p0un")
 default_color = Color(0.168627, 1, 1, 1)
 script = ExtResource("1_3d0am")

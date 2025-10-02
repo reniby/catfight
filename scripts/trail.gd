@@ -8,7 +8,8 @@ var prev = null
 var active = true
 
 func _ready():
-	remove_point(0)
+	while get_point_count() > 0:
+		remove_point(0)
 	#if self.get_parent().player == 1:
 		#body.collision_layer = 3
 
@@ -24,8 +25,8 @@ func _process(delta):
 			var shape = CollisionShape2D.new()
 			$Area2D.add_child(shape)
 			var segment = SegmentShape2D.new()
-			segment.a = points[points.size()-1]
-			segment.b = points[points.size()-2]
+			segment.a = points[points.size()-2]
+			segment.b = points[points.size()-1]
 			shape.shape = segment
 			shapes.append(shape)
 	elif get_point_count() > 0:
@@ -38,4 +39,5 @@ func _process(delta):
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 		if get_parent().player != body.player:
-			print(get_parent().player, " inbody ", body.player)
+			print(body.player, "dead")
+			body.death()

@@ -7,7 +7,7 @@ const JUMP_VELOCITY = -800.0
 @export var color: String
 @onready var death_timer: Timer = $DeathTimer
 @onready var camera = $"../Camera2D"
-@onready var p2: CharacterBody2D = $"../Player2"
+@onready var collision: CollisionShape2D = $CollisionShape2D
 
 var trail
 
@@ -57,3 +57,15 @@ func _physics_process(delta):
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+	
+func death():
+	visible = false
+	collision.set_deferred("disabled", true)
+	death_timer.start()
+	
+func _on_death_timer_timeout() -> void:
+	position.x = 0
+	position.y = 0
+	visible = true
+	collision.disabled = false
+	
