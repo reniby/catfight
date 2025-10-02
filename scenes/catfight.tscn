@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bnycs8o7hatbv"]
+[gd_scene load_steps=5 format=3 uid="uid://bnycs8o7hatbv"]
 
 [ext_resource type="PackedScene" uid="uid://dicljeul2qf12" path="res://scenes/platform.tscn" id="1_ffnek"]
-[ext_resource type="Script" uid="uid://dpahu8oa4ca0d" path="res://scripts/catfight.gd" id="1_rkgal"]
+[ext_resource type="Script" path="res://scripts/catfight.gd" id="1_rkgal"]
 [ext_resource type="PackedScene" uid="uid://dsxn5ou3e4h0t" path="res://scenes/player.tscn" id="1_whaxt"]
+[ext_resource type="Script" path="res://scripts/score.gd" id="4_tttqi"]
 
 [node name="Catfight" type="Node2D"]
 script = ExtResource("1_rkgal")
@@ -50,3 +51,10 @@ position = Vector2(560, -9)
 scale = Vector2(1.44, 33.96)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Label" type="Label" parent="."]
+offset_left = -500.0
+offset_top = -300.0
+offset_right = -460.0
+offset_bottom = -277.0
+script = ExtResource("4_tttqi")

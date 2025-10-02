@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dsxn5ou3e4h0t"]
 
-[ext_resource type="Script" uid="uid://dnbl5raisy02x" path="res://scripts/player.gd" id="1_0pet2"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_0pet2"]
 [ext_resource type="Texture2D" uid="uid://wmq22d4jtmld" path="res://icon.svg" id="1_ttfpu"]
 [ext_resource type="PackedScene" uid="uid://dx3230llssqwf" path="res://scenes/trail.tscn" id="5_mmvgc"]
 
@@ -28,6 +28,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="ITimer" type="Timer" parent="."]
+wait_time = 2.0
 one_shot = true
 
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

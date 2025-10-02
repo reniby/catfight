@@ -9,6 +9,7 @@ const JUMP_VELOCITY = -800.0
 @onready var i_timer: Timer = $ITimer
 @onready var camera = $"../Camera2D"
 @onready var collision: CollisionShape2D = $CollisionShape2D
+@onready var score: int = 0
 
 var trail
 
@@ -61,16 +62,30 @@ func _physics_process(delta):
 	
 func death():
 	visible = false
-	collision.set_deferred("disabled", true)
+
+	set_collision_layer_value(2, false)
 	death_timer.start()
+	trail.clear_points()
+	for coll in trail.shapes:
+		coll.queue_free()
+		trail.shapes = []
 	
 func _on_death_timer_timeout() -> void:
 	position.x = 0
 	position.y = 0
 	visible = true
-	rotation = 90
 	i_timer.start()
+	var tween = get_tree().create_tween()
+
+	tween.tween_property($Icon, "modulate:a", 0.4, 0.25)
+	tween.tween_property($Icon, "modulate:a", 1, 0.25)
+	tween.tween_property($Icon, "modulate:a", 0.4, 0.25)
+	tween.tween_property($Icon, "modulate:a", 1, 0.25)
+	tween.tween_property($Icon, "modulate:a", 0.4, 0.25)
+	tween.tween_property($Icon, "modulate:a", 1, 0.25)
+	tween.tween_property($Icon, "modulate:a", 0.4, 0.25)
+	tween.tween_property($Icon, "modulate:a", 1, 0.25)
 
 func _on_i_timer_timeout() -> void:
-	collision.set_deferred("disabled", false)
-	rotation = 0
+	set_collision_layer_value(2, true)
+	

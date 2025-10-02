@@ -40,4 +40,5 @@ func _physics_process(delta):
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D and get_parent().player != body.player:
 		print(body.player, "dead")
+		get_parent().score += 1
 		body.death()
