@@ -6,6 +6,7 @@ const JUMP_VELOCITY = -800.0
 @export var player: int
 @export var color: String
 @onready var death_timer: Timer = $DeathTimer
+@onready var i_timer: Timer = $ITimer
 @onready var camera = $"../Camera2D"
 @onready var collision: CollisionShape2D = $CollisionShape2D
 
@@ -67,5 +68,9 @@ func _on_death_timer_timeout() -> void:
 	position.x = 0
 	position.y = 0
 	visible = true
-	collision.disabled = false
-	
+	rotation = 90
+	i_timer.start()
+
+func _on_i_timer_timeout() -> void:
+	collision.set_deferred("disabled", false)
+	rotation = 0

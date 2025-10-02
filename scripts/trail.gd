@@ -14,7 +14,7 @@ func _ready():
 		#body.collision_layer = 3
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
 	if get_parent().velocity != Vector2(0,0):
 		global_position = Vector2(0,0)
 		global_rotation = 0
@@ -38,6 +38,6 @@ func _process(delta):
 		remove_point(0)
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-		if get_parent().player != body.player:
-			print(body.player, "dead")
-			body.death()
+	if body is CharacterBody2D and get_parent().player != body.player:
+		print(body.player, "dead")
+		body.death()
