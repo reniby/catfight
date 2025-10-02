@@ -1,6 +1,6 @@
 extends Line2D
 
-@export var length = 200
+@export var length = 100
 @onready var body = $Area2D
 @onready var shapes = []
 var point = Vector2()
@@ -41,5 +41,4 @@ func _physics_process(delta):
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D and get_parent().player != body.player:
 		print(body.player, "dead")
-		get_parent().score += 1
 		body.death()
