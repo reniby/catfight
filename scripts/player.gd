@@ -41,22 +41,23 @@ func _physics_process(delta):
 		if y_direction:
 			velocity.y = y_direction * SPEED
 		else:
-			velocity.y = move_toward(velocity.y, 0, SPEED)
+			velocity.y = lerp(velocity.y,0.0,0.1)#move_toward(velocity.y, 0, SPEED)
 		if x_direction:
 			velocity.x = x_direction * SPEED
 		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.x = lerp(velocity.x,0.0,0.1)#move_toward(velocity.x, 0, SPEED)
 	if player == 2:
 		var y_direction = Input.get_axis("up_p2", "down_p2")
 		var x_direction = Input.get_axis("left_p2", "right_p2")
 		if y_direction:
 			velocity.y = y_direction * SPEED
 		else:
-			velocity.y = move_toward(velocity.y, 0, SPEED)
+			velocity.y = lerp(velocity.y,0.0,0.1)#move_toward(velocity.y, 0, SPEED)
 		if x_direction:
 			velocity.x = x_direction * SPEED
 		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.x = lerp(velocity.x,0.0,0.1)
+			#move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
 	
@@ -76,15 +77,9 @@ func _on_death_timer_timeout() -> void:
 	visible = true
 	i_timer.start()
 	var tween = get_tree().create_tween()
-
-	tween.tween_property($Icon, "modulate:a", 0.4, 0.25)
-	tween.tween_property($Icon, "modulate:a", 1, 0.25)
-	tween.tween_property($Icon, "modulate:a", 0.4, 0.25)
-	tween.tween_property($Icon, "modulate:a", 1, 0.25)
-	tween.tween_property($Icon, "modulate:a", 0.4, 0.25)
-	tween.tween_property($Icon, "modulate:a", 1, 0.25)
-	tween.tween_property($Icon, "modulate:a", 0.4, 0.25)
-	tween.tween_property($Icon, "modulate:a", 1, 0.25)
+	for i in range(4):
+		tween.tween_property($Icon, "modulate:a", 0.4, 0.25)
+		tween.tween_property($Icon, "modulate:a", 1, 0.25)
 
 func _on_i_timer_timeout() -> void:
 	set_collision_layer_value(2, true)
