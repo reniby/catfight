@@ -1,10 +1,38 @@
-[gd_scene load_steps=5 format=3 uid="uid://dsxn5ou3e4h0t"]
+[gd_scene load_steps=8 format=3 uid="uid://dsxn5ou3e4h0t"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_0pet2"]
-[ext_resource type="Texture2D" uid="uid://wmq22d4jtmld" path="res://icon.svg" id="1_ttfpu"]
+[ext_resource type="Texture2D" uid="uid://cd3jnc3q1k4d0" path="res://space_art/2D Spaceship Sprites.png" id="3_73y64"]
 [ext_resource type="PackedScene" uid="uid://dx3230llssqwf" path="res://scenes/trail.tscn" id="5_mmvgc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3sflt"]
+size = Vector2(12, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eokdc"]
+atlas = ExtResource("3_73y64")
+region = Rect2(0, 20, 17, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_npe43"]
+atlas = ExtResource("3_73y64")
+region = Rect2(0, 0, 17, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tt4e7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eokdc")
+}],
+"loop": true,
+"name": &"blue_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_npe43")
+}],
+"loop": true,
+"name": &"red_idle",
+"speed": 5.0
+}]
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 collision_layer = 6
@@ -12,24 +40,28 @@ collision_mask = 6
 script = ExtResource("1_0pet2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_3sflt")
-
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(-0.125, -2.38419e-07)
-scale = Vector2(0.158203, 0.15625)
-texture = ExtResource("1_ttfpu")
 
 [node name="Trail" parent="." instance=ExtResource("5_mmvgc")]
 position = Vector2(-77.5602, -0.511909)
 points = PackedVector2Array(77.5602, 1.51191)
 
-[node name="DeathTimer" type="Timer" parent="."]
+[node name="Anim" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_tt4e7")
+animation = &"red_idle"
+
+[node name="Timer" type="Node" parent="."]
+
+[node name="DeathTimer" type="Timer" parent="Timer"]
 wait_time = 2.0
 one_shot = true
 
-[node name="ITimer" type="Timer" parent="."]
+[node name="ITimer" type="Timer" parent="Timer"]
 wait_time = 2.0
 one_shot = true
 
-[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
-[connection signal="timeout" from="ITimer" to="." method="_on_i_timer_timeout"]
+[node name="DashTimer" type="Timer" parent="Timer"]
+
+[connection signal="timeout" from="Timer/DeathTimer" to="." method="_on_death_timer_timeout"]
+[connection signal="timeout" from="Timer/ITimer" to="." method="_on_i_timer_timeout"]
