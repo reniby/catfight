@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 300.0
+const SPEED = 500.0
 const JUMP_VELOCITY = -800.0
 
 @export var player: int
@@ -22,6 +22,10 @@ var character_skin = [{
 },
 {
 	"color": "pink",
+	"anim": "pink_idle"
+},
+{
+	"color": "black",
 	"anim": "red_idle"
 }]
 var character_input = [{
@@ -29,19 +33,26 @@ var character_input = [{
 	"down": "down_p1",
 	"left": "left_p1",
 	"right": "right_p1",
-	"dash": "dash_p2"
+	"dash": "dash_p1"
 },
 {
 	"up": "up_p2", 
 	"down": "down_p2",
 	"left": "left_p2",
 	"right": "right_p2",
-	"dash": "dash_p1"
+	"dash": "dash_p2"
+},
+{
+	"up": "up_p3", 
+	"down": "down_p3",
+	"left": "left_p3",
+	"right": "right_p3",
+	"dash": "dash_p3"
 }
 ]
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var count = 0
 func _ready():
 	trail = get_node("Trail")

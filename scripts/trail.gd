@@ -1,6 +1,6 @@
 extends Line2D
 
-@export var length = 68
+@export var length = 40
 @onready var body = $Area2D
 @onready var shapes = []
 var point = Vector2()

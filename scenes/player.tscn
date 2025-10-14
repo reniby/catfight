@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://dsxn5ou3e4h0t"]
+[gd_scene load_steps=15 format=3 uid="uid://dsxn5ou3e4h0t"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_0pet2"]
 [ext_resource type="Texture2D" uid="uid://bvyvtu10tv7u2" path="res://space_art/$Snail4.png" id="3_phf6r"]
 [ext_resource type="Texture2D" uid="uid://dkc8dcn05ow0b" path="res://space_art/$Female_Snail.png" id="4_sfcvd"]
+[ext_resource type="Texture2D" uid="uid://cd3jnc3q1k4d0" path="res://space_art/2D Spaceship Sprites.png" id="5_mm3yy"]
 [ext_resource type="PackedScene" uid="uid://dx3230llssqwf" path="res://scenes/trail.tscn" id="5_mmvgc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5o2x8"]
@@ -33,6 +34,10 @@ region = Rect2(48, 144, 48, 48)
 atlas = ExtResource("4_sfcvd")
 region = Rect2(96, 144, 48, 48)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8q0q"]
+atlas = ExtResource("5_mm3yy")
+region = Rect2(0, 0, 18, 20)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_tt4e7"]
 animations = [{
 "frames": [{
@@ -60,6 +65,14 @@ animations = [{
 "texture": SubResource("AtlasTexture_2kdhp")
 }],
 "loop": true,
+"name": &"pink_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v8q0q")
+}],
+"loop": true,
 "name": &"red_idle",
 "speed": 5.0
 }]
@@ -82,13 +95,11 @@ position = Vector2(0.187501, -2.8125)
 scale = Vector2(0.584545, 0.575521)
 sprite_frames = SubResource("SpriteFrames_tt4e7")
 animation = &"blue_idle"
-autoplay = "blue_idle"
-frame_progress = 0.0709803
 
 [node name="Timer" type="Node" parent="."]
 
 [node name="DeathTimer" type="Timer" parent="Timer"]
-wait_time = 2.0
+wait_time = 3.0
 one_shot = true
 
 [node name="ITimer" type="Timer" parent="Timer"]
