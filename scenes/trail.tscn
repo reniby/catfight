@@ -1,17 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://dx3230llssqwf"]
+[gd_scene load_steps=2 format=3 uid="uid://dx3230llssqwf"]
 
 [ext_resource type="Script" path="res://scripts/trail.gd" id="1_3d0am"]
-
-[sub_resource type="Curve" id="Curve_8p0un"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.10297, 0.431658), 0.0, 0.0, 0, 0, Vector2(0.334653, 0.534003), 0.0, 0.0, 0, 0, Vector2(0.570297, 0.48392), 0.0, 0.0, 0, 0, Vector2(0.582178, 0.838861), 0.0, 0.0, 0, 0, Vector2(0.772277, 0.342379), 0.0, 0.0, 0, 0, Vector2(0.976273, 1), 0.0, 0.0, 0, 0]
-point_count = 7
 
 [node name="Trail" type="Line2D"]
 show_behind_parent = true
 texture_filter = 1
-width = 1.0
-width_curve = SubResource("Curve_8p0un")
+width = 6.0
 default_color = Color(0.168627, 1, 1, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
 script = ExtResource("1_3d0am")
 
 [node name="Area2D" type="Area2D" parent="."]

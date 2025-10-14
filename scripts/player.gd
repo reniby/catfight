@@ -9,10 +9,13 @@ const JUMP_VELOCITY = -800.0
 @onready var camera = $"../Camera2D"
 @onready var score: int = 0
 @onready var anim: AnimatedSprite2D = $Anim
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
+@onready var dash_timer: Timer = $Timer/DashTimer
 
 var trail
 var x_facing = 0
 var y_facing = 0
+var can_dash = true
 var character_skin = [{
 	"color": "cyan",
 	"anim": "blue_idle"
@@ -51,15 +54,6 @@ func _physics_process(delta):
 	var top = camera.get_viewport_rect().size.y/2 * -1
 	var bottom = camera.get_viewport_rect().size.y/2
 
-	if position.y > bottom:
-		position.y = top
-	elif position.y < top:
-		position.y = bottom
-	if position.x > right + 10:
-		position.x = left
-	elif position.x < left - 10:
-		position.x = right
-
 	player_controller(delta)
 
 	move_and_slide()
@@ -91,16 +85,22 @@ func _on_i_timer_timeout() -> void:
 	set_collision_layer_value(2, true)
 
 func player_controller(delta):
-	var y_direction = Input.get_axis(character_input[player]["up"], character_input[player]["down"])
-	var x_direction = Input.get_axis(character_input[player]["left"], character_input[player]["right"])
-	if y_direction:
-		velocity.y = lerp(velocity.y, y_direction * SPEED, 5*delta)
+	var direction = Input.get_vector(character_input[player]["left"], character_input[player]["right"], character_input[player]["up"], character_input[player]["down"])
+	if direction:
+		velocity = velocity.lerp(direction * SPEED, 5*delta)
 	else:
-		velocity.y = lerp(velocity.y, 0.0, 5 * delta)
-	if x_direction:
-		velocity.x = lerp(velocity.x, x_direction * SPEED, 5*delta)
-	else:
-		velocity.x = lerp(velocity.x, 0.0, 5 * delta)
-	if Input.is_action_just_pressed(character_input[player]["dash"]):
+		velocity = velocity.lerp(Vector2(0,0), 5 * delta)
+	if Input.is_action_just_pressed(character_input[player]["dash"]) and can_dash:
 		velocity = Vector2(cos(anim.rotation - PI/2), sin(anim.rotation - PI/2)).normalized() * SPEED * 5 
+		can_dash = false
+		dash_timer.start()
+		var tween = get_tree().create_tween()
+		tween.tween_property(anim, "modulate", Color.RED, 0.5)
+		tween.tween_property(anim, "modulate", Color.WHITE, 0.5)
+		
 	anim.rotation = lerp_angle(anim.rotation, atan2(velocity.x, -velocity.y), delta*10.0)
+	collision_shape.rotation = lerp_angle(anim.rotation, atan2(velocity.x, -velocity.y), delta*10.0)
+	
+
+func _on_dash_timer_timeout() -> void:
+	can_dash = true
