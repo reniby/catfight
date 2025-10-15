@@ -1,6 +1,6 @@
 extends Line2D
 
-@export var length = 68
+@export var length = 40
 @onready var body = $Area2D
 @onready var shapes = []
 var point = Vector2()
@@ -37,6 +37,14 @@ func _physics_process(delta):
 		while get_point_count() >= length:
 			shapes.pop_at(0).queue_free()
 			remove_point(0)
+
+func get_line_length(points):
+	var total_length = 0
+	
+	for i in range(0, len(points) - 1, 2):
+		total_length += sqrt((points[i+1][0]-points[i][0])**2 + (points[i+1][1] - points[i][1])**2)
+		
+	return total_length
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D and get_parent().player != body.player:
