@@ -1,7 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://dsxn5ou3e4h0t"]
+[gd_scene load_steps=13 format=3 uid="uid://dsxn5ou3e4h0t"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_0pet2"]
-[ext_resource type="Texture2D" uid="uid://bvyvtu10tv7u2" path="res://space_art/$Snail4.png" id="3_phf6r"]
+[ext_resource type="Texture2D" uid="uid://ddatbx2iqm4pj" path="res://assets/player_sprite.png" id="3_30e8q"]
 [ext_resource type="Texture2D" uid="uid://dkc8dcn05ow0b" path="res://space_art/$Female_Snail.png" id="4_sfcvd"]
 [ext_resource type="Texture2D" uid="uid://cd3jnc3q1k4d0" path="res://space_art/2D Spaceship Sprites.png" id="5_mm3yy"]
 [ext_resource type="PackedScene" uid="uid://dx3230llssqwf" path="res://scenes/trail.tscn" id="5_mmvgc"]
@@ -10,17 +10,9 @@
 radius = 5.0
 height = 22.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_s1ew0"]
-atlas = ExtResource("3_phf6r")
-region = Rect2(0, 144, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_a05yn"]
-atlas = ExtResource("3_phf6r")
-region = Rect2(48, 144, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_l41yo"]
-atlas = ExtResource("3_phf6r")
-region = Rect2(96, 144, 48, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_eljj1"]
+atlas = ExtResource("3_30e8q")
+region = Rect2(0, 0, 30, 26)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gjxun"]
 atlas = ExtResource("4_sfcvd")
@@ -42,13 +34,7 @@ region = Rect2(0, 0, 18, 20)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_s1ew0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_a05yn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_l41yo")
+"texture": SubResource("AtlasTexture_eljj1")
 }],
 "loop": true,
 "name": &"blue_idle",
@@ -91,7 +77,6 @@ position = Vector2(-77.5602, -0.511909)
 points = PackedVector2Array(77.5602, 1.51191)
 
 [node name="Anim" type="AnimatedSprite2D" parent="."]
-position = Vector2(0.187501, -2.8125)
 scale = Vector2(0.584545, 0.575521)
 sprite_frames = SubResource("SpriteFrames_tt4e7")
 animation = &"blue_idle"

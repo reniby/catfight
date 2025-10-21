@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bnycs8o7hatbv"]
+[gd_scene load_steps=7 format=3 uid="uid://bnycs8o7hatbv"]
 
 [ext_resource type="PackedScene" uid="uid://dicljeul2qf12" path="res://scenes/platform.tscn" id="1_ffnek"]
 [ext_resource type="Script" path="res://scripts/catfight.gd" id="1_rkgal"]
 [ext_resource type="PackedScene" uid="uid://dsxn5ou3e4h0t" path="res://scenes/player.tscn" id="1_whaxt"]
-[ext_resource type="Texture2D" uid="uid://bmcatdfsxa15e" path="res://space_art/Grassy Flower Background.webp" id="2_k4stm"]
 [ext_resource type="Script" path="res://scripts/score.gd" id="4_tttqi"]
 [ext_resource type="PackedScene" uid="uid://cowem0i0pp2jf" path="res://scenes/coin.tscn" id="5_onvbn"]
 [ext_resource type="Script" path="res://scripts/timer.gd" id="7_o0l6i"]
@@ -11,10 +10,13 @@
 [node name="Catfight" type="Node2D"]
 script = ExtResource("1_rkgal")
 
-[node name="CosmicBackgroundOuterSpace" type="Sprite2D" parent="."]
-position = Vector2(-5.00001, -13)
+[node name="CosmicBackgroundOuterSpace" type="ColorRect" parent="."]
+offset_left = -630.0
+offset_top = -368.0
+offset_right = 61.0
+offset_bottom = 25.0
 scale = Vector2(2, 1.909)
-texture = ExtResource("2_k4stm")
+color = Color(0.270588, 0.156863, 0.235294, 1)
 
 [node name="Player" parent="." instance=ExtResource("1_whaxt")]
 position = Vector2(-6.10352e-05, 1.90735e-06)
@@ -64,6 +66,10 @@ scale = Vector2(1.44, 33.96)
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Coins" type="Node" parent="."]
+
+[node name="Coin3" parent="Coins" instance=ExtResource("5_onvbn")]
+
+[node name="Coin2" parent="Coins" instance=ExtResource("5_onvbn")]
 
 [node name="Coin" parent="Coins" instance=ExtResource("5_onvbn")]
 

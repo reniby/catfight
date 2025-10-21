@@ -1,6 +1,10 @@
 extends Node2D
 @onready var player_1: CharacterBody2D = $Player
 @onready var player_2: CharacterBody2D = $Player2
+var title = "Game v0.1"
+
+func _process(delta):
+	DisplayServer.window_set_title(title + " | fps: " + str(Engine.get_frames_per_second()))
 
 func _on_game_timer_timeout() -> void:
 	Globals.scores[0] = player_1.score
