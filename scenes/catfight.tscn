@@ -69,6 +69,10 @@ scale = Vector2(1.44, 33.96)
 
 [node name="Coin" parent="Coins" instance=ExtResource("5_onvbn")]
 
+[node name="Coin2" parent="Coins" instance=ExtResource("5_onvbn")]
+
+[node name="Coin3" parent="Coins" instance=ExtResource("5_onvbn")]
+
 [node name="Labels" type="Node" parent="."]
 
 [node name="Score" type="Label" parent="Labels"]

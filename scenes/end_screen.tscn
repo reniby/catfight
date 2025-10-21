@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ch0b7cixe4j2h"]
 
 [ext_resource type="Texture2D" uid="uid://bmcatdfsxa15e" path="res://space_art/Grassy Flower Background.webp" id="1_msdr5"]
-[ext_resource type="Script" path="res://scripts/score_screen.gd" id="2_2aptv"]
+[ext_resource type="Script" uid="uid://c1jlum5beks5p" path="res://scripts/score_screen.gd" id="2_2aptv"]
 
 [node name="EndScreen" type="Node2D"]
 
