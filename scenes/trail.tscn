@@ -1,12 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://dx3230llssqwf"]
+[gd_scene load_steps=6 format=3 uid="uid://dx3230llssqwf"]
 
 [ext_resource type="Script" path="res://scripts/trail.gd" id="1_3d0am"]
+[ext_resource type="Texture2D" uid="uid://6xrgce4jd4ml" path="res://space_art/pixil-frame-0 (1).png" id="1_op0au"]
+[ext_resource type="Texture2D" uid="uid://res3ykr8pt3d" path="res://space_art/pixil-frame-0.png" id="1_qu12p"]
+
+[sub_resource type="Curve" id="Curve_tror3"]
+_data = [Vector2(0.00526316, 0), 0.0, 0.0, 0, 0, Vector2(0.121053, 0.945055), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_g26bl"]
+frames = 2
+frame_0/texture = ExtResource("1_op0au")
+frame_0/duration = 0.2
+frame_1/texture = ExtResource("1_qu12p")
+frame_1/duration = 0.2
 
 [node name="Trail" type="Line2D"]
 show_behind_parent = true
 texture_filter = 1
 width = 6.0
-default_color = Color(0.168627, 1, 1, 1)
+width_curve = SubResource("Curve_tror3")
+texture = SubResource("AnimatedTexture_g26bl")
+texture_mode = 1
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
