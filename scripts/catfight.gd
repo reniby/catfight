@@ -1,7 +1,13 @@
 extends Node2D
 @onready var player_1: CharacterBody2D = $Player
 @onready var player_2: CharacterBody2D = $Player2
+@export var coin_scene: PackedScene = preload("res://scenes/coin.tscn")
 var title = "Reaper Madness :D"
+
+func _ready():
+	var numCoins = Globals.numPlayers
+	for i in range(numCoins-1):
+		add_child(coin_scene.instantiate())
 
 func _process(delta):
 	DisplayServer.window_set_title(title + " | fps: " + str(Engine.get_frames_per_second()))
