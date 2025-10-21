@@ -1,10 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://dsxn5ou3e4h0t"]
+[gd_scene load_steps=15 format=3 uid="uid://dsxn5ou3e4h0t"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_0pet2"]
 [ext_resource type="Texture2D" uid="uid://ddatbx2iqm4pj" path="res://assets/player_sprite.png" id="3_30e8q"]
 [ext_resource type="Texture2D" uid="uid://dkc8dcn05ow0b" path="res://space_art/$Female_Snail.png" id="4_sfcvd"]
 [ext_resource type="Texture2D" uid="uid://cd3jnc3q1k4d0" path="res://space_art/2D Spaceship Sprites.png" id="5_mm3yy"]
 [ext_resource type="PackedScene" uid="uid://dx3230llssqwf" path="res://scenes/trail.tscn" id="5_mmvgc"]
+
+[sub_resource type="Curve" id="Curve_jla11"]
+_data = [Vector2(0.011236, 1), 0.0, 0.0, 0, 0, Vector2(0.623596, 0.010989), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5o2x8"]
 radius = 5.0
@@ -72,6 +76,21 @@ collision_layer = 6
 collision_mask = 6
 script = ExtResource("1_0pet2")
 
+[node name="HitParticles" type="CPUParticles2D" parent="."]
+scale = Vector2(0.584545, 0.575521)
+emitting = false
+amount = 11
+one_shot = true
+explosiveness = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 120.0
+initial_velocity_max = 180.0
+scale_amount_min = 4.0
+scale_amount_max = 6.0
+scale_amount_curve = SubResource("Curve_jla11")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)
 shape = SubResource("CapsuleShape2D_5o2x8")
@@ -83,9 +102,10 @@ points = PackedVector2Array(77.5602, 1.51191)
 [node name="Anim" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.584545, 0.575521)
 sprite_frames = SubResource("SpriteFrames_tt4e7")
-animation = &"blue_idle"
+animation = &"red_idle"
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 4
 direction = Vector2(0, 0)
 gravity = Vector2(0, 0)
 initial_velocity_min = 25.0

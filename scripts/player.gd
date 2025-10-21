@@ -12,13 +12,14 @@ const JUMP_VELOCITY = -800.0
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var dash_timer: Timer = $Timer/DashTimer
 @onready var particles: CPUParticles2D = $CPUParticles2D
+@onready var hit_particles: CPUParticles2D = $HitParticles
 
 var trail
 var x_facing = 0
 var y_facing = 0
 var can_dash = true
 var character_skin = [{
-	"color": "cyan",
+	"color": "#17191b",
 	"anim": "blue_idle"
 },
 {
@@ -72,7 +73,8 @@ func _physics_process(delta):
 	if get_last_slide_collision() != null and get_last_slide_collision().get_collider() is CharacterBody2D:
 		var collision = get_last_slide_collision()
 		velocity = Vector2(cos(get_angle_to(collision.get_position()) - 3*PI/4), sin(get_angle_to(collision.get_position()) - 3*PI/4)).normalized() * SPEED * 2
-
+		hit_particles.global_position = collision.get_position()
+		hit_particles.restart()
 	particles.rotation = anim.rotation + PI/2
 	if velocity.length() < 50:
 		particles.emitting = false

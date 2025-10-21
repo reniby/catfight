@@ -11,10 +11,10 @@
 script = ExtResource("1_rkgal")
 
 [node name="CosmicBackgroundOuterSpace" type="ColorRect" parent="."]
-offset_left = -630.0
-offset_top = -368.0
-offset_right = 61.0
-offset_bottom = 25.0
+offset_left = -678.0
+offset_top = -373.0
+offset_right = 13.0
+offset_bottom = 20.0
 scale = Vector2(2, 1.909)
 color = Color(0.270588, 0.156863, 0.235294, 1)
 
@@ -44,7 +44,7 @@ position = Vector2(252, 176)
 scale = Vector2(3.12, 1.6)
 
 [node name="platforms3" parent="platforms" instance=ExtResource("1_ffnek")]
-position = Vector2(-3, -105)
+position = Vector2(-8, -144)
 scale = Vector2(10.08, 1.6)
 
 [node name="platforms5" parent="platforms" instance=ExtResource("1_ffnek")]
@@ -66,10 +66,6 @@ scale = Vector2(1.44, 33.96)
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Coins" type="Node" parent="."]
-
-[node name="Coin3" parent="Coins" instance=ExtResource("5_onvbn")]
-
-[node name="Coin2" parent="Coins" instance=ExtResource("5_onvbn")]
 
 [node name="Coin" parent="Coins" instance=ExtResource("5_onvbn")]
 
