@@ -11,6 +11,7 @@ const JUMP_VELOCITY = -800.0
 @onready var anim: AnimatedSprite2D = $Anim
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var dash_timer: Timer = $Timer/DashTimer
+@onready var particles: CPUParticles2D = $CPUParticles2D
 
 var trail
 var x_facing = 0
@@ -72,6 +73,13 @@ func _physics_process(delta):
 		var collision = get_last_slide_collision()
 		velocity = Vector2(cos(get_angle_to(collision.get_position()) - 3*PI/4), sin(get_angle_to(collision.get_position()) - 3*PI/4)).normalized() * SPEED * 2
 
+	particles.rotation = anim.rotation + PI/2
+	if velocity.length() < 50:
+		particles.emitting = false
+	else:
+		particles.emitting = true
+			
+	particles.initial_velocity_min = remap(velocity.length(),0, 1000,5,100)
 func death():
 	visible = false
 

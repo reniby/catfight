@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dsxn5ou3e4h0t"]
+[gd_scene load_steps=14 format=3 uid="uid://dsxn5ou3e4h0t"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_0pet2"]
 [ext_resource type="Texture2D" uid="uid://ddatbx2iqm4pj" path="res://assets/player_sprite.png" id="3_30e8q"]
@@ -63,6 +63,10 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Curve" id="Curve_cf6rf"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.353933, 0.362637), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 collision_layer = 6
 collision_mask = 6
@@ -80,6 +84,15 @@ points = PackedVector2Array(77.5602, 1.51191)
 scale = Vector2(0.584545, 0.575521)
 sprite_frames = SubResource("SpriteFrames_tt4e7")
 animation = &"blue_idle"
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+direction = Vector2(0, 0)
+gravity = Vector2(0, 0)
+initial_velocity_min = 25.0
+initial_velocity_max = 75.0
+scale_amount_min = 4.0
+scale_amount_max = 6.0
+scale_amount_curve = SubResource("Curve_cf6rf")
 
 [node name="Timer" type="Node" parent="."]
 
