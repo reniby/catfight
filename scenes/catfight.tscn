@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://bnycs8o7hatbv"]
 
 [ext_resource type="PackedScene" uid="uid://dicljeul2qf12" path="res://scenes/platform.tscn" id="1_ffnek"]
-[ext_resource type="Script" path="res://scripts/catfight.gd" id="1_rkgal"]
+[ext_resource type="Script" uid="uid://dpahu8oa4ca0d" path="res://scripts/catfight.gd" id="1_rkgal"]
 [ext_resource type="PackedScene" uid="uid://dsxn5ou3e4h0t" path="res://scenes/player.tscn" id="1_whaxt"]
-[ext_resource type="Script" path="res://scripts/score.gd" id="4_tttqi"]
+[ext_resource type="Script" uid="uid://ygxrogcgpl8c" path="res://scripts/score.gd" id="4_tttqi"]
 [ext_resource type="PackedScene" uid="uid://cowem0i0pp2jf" path="res://scenes/coin.tscn" id="5_onvbn"]
-[ext_resource type="Script" path="res://scripts/timer.gd" id="7_o0l6i"]
+[ext_resource type="Script" uid="uid://bxmk0hcf2ra47" path="res://scripts/timer.gd" id="7_o0l6i"]
 
 [node name="Catfight" type="Node2D"]
 script = ExtResource("1_rkgal")

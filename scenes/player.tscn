@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://dsxn5ou3e4h0t"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_0pet2"]
+[ext_resource type="Script" uid="uid://dnbl5raisy02x" path="res://scripts/player.gd" id="1_0pet2"]
 [ext_resource type="Texture2D" uid="uid://ddatbx2iqm4pj" path="res://assets/player_sprite.png" id="3_30e8q"]
 [ext_resource type="Texture2D" uid="uid://dkc8dcn05ow0b" path="res://space_art/$Female_Snail.png" id="4_sfcvd"]
 [ext_resource type="Texture2D" uid="uid://cd3jnc3q1k4d0" path="res://space_art/2D Spaceship Sprites.png" id="5_mm3yy"]
