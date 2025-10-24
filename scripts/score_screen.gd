@@ -8,4 +8,5 @@ func _process(delta: float) -> void:
 	text += "\n P1: " + str(Globals.scores[0]) + " vs P2: " + str(Globals.scores[1])
 
 func _on_button_pressed() -> void:
+	Globals.resetGlobals()
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")

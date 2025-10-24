@@ -33,7 +33,7 @@ var character_input = [{
 ]
 var actions = ['left', 'right', 'up', 'down']
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	for player in range(4):
 		for action in actions:
 			if Input.is_action_just_pressed(character_input[player][action]):
@@ -45,7 +45,7 @@ func _process(delta: float) -> void:
 				
 
 		if Globals.players[player]:
-			labels[player].text = "Player %d Joined\nPress again to leave" % player
+			labels[player].text = "Player %d Joined\nPress again to leave" % (player+1)
 		else:
 			labels[player].text = ""
 	

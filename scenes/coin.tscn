@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cowem0i0pp2jf"]
 
-[ext_resource type="Script" path="res://scripts/coin.gd" id="1_dulcj"]
+[ext_resource type="Script" uid="uid://doo2ym4432gsg" path="res://scripts/coin.gd" id="1_dulcj"]
 [ext_resource type="Texture2D" uid="uid://bxxtm2bgl27te" path="res://assets/collectible-spirit.png" id="2_2b6wr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6elf1"]

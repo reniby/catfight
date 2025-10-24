@@ -7,7 +7,6 @@ const JUMP_VELOCITY = -800.0
 @onready var death_timer: Timer = $Timer/DeathTimer
 @onready var i_timer: Timer = $Timer/ITimer
 @onready var camera = $"../Camera2D"
-@onready var score: int = 0
 @onready var anim: AnimatedSprite2D = $Anim
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var dash_timer: Timer = $Timer/DashTimer
@@ -23,15 +22,15 @@ var character_skin = [{
 	"anim": "blue_idle"
 },
 {
-	"color": "pink",
+	"color": "#FF3F7F",
 	"anim": "pink_idle"
 },
 {
-	"color": "black",
+	"color": "#FFC400",
 	"anim": "red_idle"
 },
 {
-	"color": "indigo",
+	"color": "#450693",
 	"anim": "indigo_idle"
 }]
 var character_input = [{
@@ -73,10 +72,10 @@ func _ready():
 	trail.default_color = character_skin[player]["color"]
 
 func _physics_process(delta):
-	var left = camera.get_viewport_rect().size.x/2 * -1
-	var right = camera.get_viewport_rect().size.x/2
-	var top = camera.get_viewport_rect().size.y/2 * -1
-	var bottom = camera.get_viewport_rect().size.y/2
+	#var left = camera.get_viewport_rect().size.x/2 * -1
+	#var right = camera.get_viewport_rect().size.x/2
+	#var top = camera.get_viewport_rect().size.y/2 * -1
+	#var bottom = camera.get_viewport_rect().size.y/2
 
 	player_controller(delta)
 
