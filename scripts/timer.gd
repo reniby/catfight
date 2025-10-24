@@ -7,4 +7,4 @@ func _ready():
 		game_timer.start()
 
 func _process(delta: float) -> void:
-	text = str(game_timer.time_left) if Globals.mode == 0 else str("")
+	text = "%.2f" % game_timer.time_left if Globals.mode == 0 else str("")

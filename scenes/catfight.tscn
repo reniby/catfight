@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnycs8o7hatbv"]
+[gd_scene load_steps=7 format=3 uid="uid://bnycs8o7hatbv"]
 
 [ext_resource type="PackedScene" uid="uid://dicljeul2qf12" path="res://scenes/platform.tscn" id="1_ffnek"]
-[ext_resource type="Script" uid="uid://dpahu8oa4ca0d" path="res://scripts/catfight.gd" id="1_rkgal"]
+[ext_resource type="Script" path="res://scripts/catfight.gd" id="1_rkgal"]
 [ext_resource type="PackedScene" uid="uid://dsxn5ou3e4h0t" path="res://scenes/player.tscn" id="1_whaxt"]
-[ext_resource type="Script" uid="uid://ygxrogcgpl8c" path="res://scripts/score.gd" id="4_tttqi"]
-[ext_resource type="Script" uid="uid://bxmk0hcf2ra47" path="res://scripts/timer.gd" id="7_o0l6i"]
+[ext_resource type="FontFile" uid="uid://be856ca43l6oe" path="res://assets/fonts/Jacquard12-Regular.ttf" id="4_1q25q"]
+[ext_resource type="Script" path="res://scripts/score.gd" id="4_tttqi"]
+[ext_resource type="Script" path="res://scripts/timer.gd" id="7_o0l6i"]
 
 [node name="Catfight" type="Node2D"]
 script = ExtResource("1_rkgal")
@@ -18,7 +19,7 @@ scale = Vector2(2, 1.909)
 color = Color(0.270588, 0.156863, 0.235294, 1)
 
 [node name="Player" parent="." instance=ExtResource("1_whaxt")]
-position = Vector2(-6.10352e-05, 1.90735e-06)
+position = Vector2(-1.45519e-11, 4.54747e-13)
 scale = Vector2(3.5, 3.5)
 
 [node name="Player2" parent="." instance=ExtResource("1_whaxt")]
@@ -28,7 +29,6 @@ player = 1
 
 [node name="Player3" parent="." instance=ExtResource("1_whaxt")]
 position = Vector2(324, -137)
-rotation = 6.28319
 scale = Vector2(3.5, 3.5)
 player = 2
 
@@ -71,6 +71,8 @@ offset_left = -500.0
 offset_top = -300.0
 offset_right = -460.0
 offset_bottom = -277.0
+theme_override_fonts/font = ExtResource("4_1q25q")
+theme_override_font_sizes/font_size = 32
 script = ExtResource("4_tttqi")
 
 [node name="Timer" type="Label" parent="Labels"]
@@ -78,6 +80,7 @@ offset_left = -21.0
 offset_top = -301.0
 offset_right = 19.0
 offset_bottom = -278.0
+theme_override_font_sizes/font_size = 36
 script = ExtResource("7_o0l6i")
 
 [node name="GameTimer" type="Timer" parent="."]

@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://cplowcwd14k0p"
-path="res://.godot/imported/PixelOperator8.ttf-709c4ba090e064ada4c129de8f265daf.fontdata"
+uid="uid://be856ca43l6oe"
+path="res://.godot/imported/Jacquard12-Regular.ttf-94e539e9cfa84e5aa88b3059d837c33c.fontdata"
 
 [deps]
 
-source_file="res://brackeys_platformer_assets 2/fonts/PixelOperator8.ttf"
-dest_files=["res://.godot/imported/PixelOperator8.ttf-709c4ba090e064ada4c129de8f265daf.fontdata"]
+source_file="res://assets/fonts/Jacquard12-Regular.ttf"
+dest_files=["res://.godot/imported/Jacquard12-Regular.ttf-94e539e9cfa84e5aa88b3059d837c33c.fontdata"]
 
 [params]
 
