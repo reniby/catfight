@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dx3230llssqwf"]
 
-[ext_resource type="Script" uid="uid://g85dtsexyj6y" path="res://scripts/trail.gd" id="1_3d0am"]
+[ext_resource type="Script" path="res://scripts/trail.gd" id="1_3d0am"]
 
 [node name="Trail" type="Line2D"]
 show_behind_parent = true

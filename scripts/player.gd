@@ -70,6 +70,8 @@ func _ready():
 	trail = get_node("Trail")
 	anim.play(character_skin[player]["anim"])
 	trail.default_color = character_skin[player]["color"]
+	particles.color = character_skin[player]['color']
+	hit_particles.color = character_skin[player]['color']
 
 func _physics_process(delta):
 	#var left = camera.get_viewport_rect().size.x/2 * -1
