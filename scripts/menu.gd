@@ -5,8 +5,8 @@ extends Node2D
 
 func _on_timed_pressed() -> void:
 	Globals.mode = 0
-	get_tree().change_scene_to_file("res://scenes/catfight.tscn")
+	get_tree().change_scene_to_file("res://scenes/character_select.tscn")
 
 func _on_zen_pressed() -> void:
 	Globals.mode = 1
-	get_tree().change_scene_to_file("res://scenes/catfight.tscn")
+	get_tree().change_scene_to_file("res://scenes/character_select.tscn")

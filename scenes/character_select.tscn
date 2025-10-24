@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyn08vqntdp1u"]
+
+[ext_resource type="Script" path="res://scripts/character_select.gd" id="1_udr5a"]
+
+[node name="CharacterSelect" type="Node2D"]
+script = ExtResource("1_udr5a")
+
+[node name="Label4" type="Label" parent="."]
+offset_left = 672.0
+offset_top = 336.0
+offset_right = 712.0
+offset_bottom = 353.0
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 64.0
+offset_top = 336.0
+offset_right = 104.0
+offset_bottom = 353.0
+
+[node name="Label" type="Label" parent="."]
+offset_right = 624.0
+offset_bottom = 352.0
+scale = Vector2(0.44, 0.4)
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 632.0
+offset_top = 32.0
+offset_right = 672.0
+offset_bottom = 49.0
+
+[node name="PressPlay" type="Label" parent="."]
+offset_left = 328.0
+offset_top = 304.0
+offset_right = 368.0
+offset_bottom = 321.0

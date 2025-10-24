@@ -29,6 +29,10 @@ var character_skin = [{
 {
 	"color": "black",
 	"anim": "red_idle"
+},
+{
+	"color": "indigo",
+	"anim": "indigo_idle"
 }]
 var character_input = [{
 	"up": "up_p1", 
@@ -50,6 +54,13 @@ var character_input = [{
 	"left": "left_p3",
 	"right": "right_p3",
 	"dash": "dash_p3"
+},
+{
+	"up": "up_p4", 
+	"down": "down_p4",
+	"left": "left_p4",
+	"right": "right_p4",
+	"dash": "dash_p4"
 }
 ]
 

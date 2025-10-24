@@ -1,24 +1,33 @@
 extends Node2D
-@onready var player_1: CharacterBody2D = $Player
-@onready var player_2: CharacterBody2D = $Player2
+
 @export var coin_scene: PackedScene = preload("res://scenes/coin.tscn")
+var player_scene: PackedScene = preload("res://scenes/player.tscn")
 var title = "Reaper Madness :D"
-
+var player_positions = [
+	Vector2(-500, -250),
+	Vector2(500,-250),
+	Vector2(-500, 250),
+	Vector2(500,250)
+]
 func _ready():
-	var numCoins = Globals.numPlayers
-	for i in range(numCoins-1):
+	for i in range(Globals.numPlayers-1):
 		add_child(coin_scene.instantiate())
-
+	for i in range(len(Globals.players)):
+		if Globals.players[i]:
+			var child = player_scene.instantiate()
+			child.player = i
+			add_child(child)
+			child.global_position = player_positions[i]
 func _process(delta):
 	DisplayServer.window_set_title(title + " | fps: " + str(Engine.get_frames_per_second()))
 
 func _on_game_timer_timeout() -> void:
-	Globals.scores[0] = player_1.score
-	Globals.scores[1] = player_2.score
-	if player_1.score > player_2.score:
-		Globals.winner = 1
-	elif player_1.score < player_2.score:
-		Globals.winner = 2
-	else:
-		Globals.winner = 0
+	#Globals.scores[0] = player_1.score
+	#Globals.scores[1] = player_2.score
+	#if player_1.score > player_2.score:
+		#Globals.winner = 1
+	#elif player_1.score < player_2.score:
+		#Globals.winner = 2
+	#else:
+		#Globals.winner = 0
 	get_tree().change_scene_to_file("res://scenes/end_screen.tscn")

@@ -46,6 +46,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_eljj1")
+}],
+"loop": true,
+"name": &"indigo_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_gjxun")
 }, {
 "duration": 1.0,
@@ -100,9 +108,8 @@ position = Vector2(-77.5602, -0.511909)
 points = PackedVector2Array(77.5602, 1.51191)
 
 [node name="Anim" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.584545, 0.575521)
 sprite_frames = SubResource("SpriteFrames_tt4e7")
-animation = &"red_idle"
+animation = &"indigo_idle"
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 amount = 4
