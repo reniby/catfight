@@ -12,6 +12,7 @@ const JUMP_VELOCITY = -800.0
 @onready var dash_timer: Timer = $Timer/DashTimer
 @onready var particles: CPUParticles2D = $CPUParticles2D
 @onready var hit_particles: CPUParticles2D = $HitParticles
+@onready var shadow_anim: AnimatedSprite2D = $Shadow
 
 var trail
 var x_facing = 0
@@ -69,6 +70,7 @@ var count = 0
 func _ready():
 	trail = get_node("Trail")
 	anim.play(character_skin[player]["anim"])
+	shadow_anim.play(character_skin[player]["anim"])
 	trail.default_color = character_skin[player]["color"]
 	particles.color = character_skin[player]['color']
 	hit_particles.color = character_skin[player]['color']
@@ -113,7 +115,7 @@ func _on_death_timer_timeout() -> void:
 	for i in range(4):
 		tween.tween_property(anim, "modulate:a", 0.4, 0.25)
 		tween.tween_property(anim, "modulate:a", 1, 0.25)
-
+		
 func _on_i_timer_timeout() -> void:
 	set_collision_layer_value(2, true)
 
@@ -132,6 +134,7 @@ func player_controller(delta):
 		tween.tween_property(anim, "modulate", Color.WHITE, 0.5)
 		
 	anim.rotation = lerp_angle(anim.rotation, atan2(velocity.x, -velocity.y), delta*10.0)
+	shadow_anim.rotation = lerp_angle(shadow_anim.rotation, atan2(velocity.x, -velocity.y), delta*10.0)
 	collision_shape.rotation = lerp_angle(anim.rotation, atan2(velocity.x, -velocity.y), delta*10.0)
 	
 

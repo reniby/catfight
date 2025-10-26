@@ -1,19 +1,12 @@
-[gd_scene load_steps=22 format=3 uid="uid://dsxn5ou3e4h0t"]
+[gd_scene load_steps=24 format=3 uid="uid://dsxn5ou3e4h0t"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_0pet2"]
 [ext_resource type="Texture2D" uid="uid://ddatbx2iqm4pj" path="res://assets/player_sprite.png" id="3_30e8q"]
 [ext_resource type="Texture2D" uid="uid://b2gs2mfpppkr0" path="res://assets/mc_ani_sheet.png" id="3_phkrk"]
+[ext_resource type="Texture2D" uid="uid://b8b74bj1rkxud" path="res://assets/tail_v0.0.png" id="3_vjhak"]
 [ext_resource type="Texture2D" uid="uid://dkc8dcn05ow0b" path="res://space_art/$Female_Snail.png" id="4_sfcvd"]
 [ext_resource type="Texture2D" uid="uid://cd3jnc3q1k4d0" path="res://space_art/2D Spaceship Sprites.png" id="5_mm3yy"]
 [ext_resource type="PackedScene" uid="uid://dx3230llssqwf" path="res://scenes/trail.tscn" id="5_mmvgc"]
-
-[sub_resource type="Curve" id="Curve_jla11"]
-_data = [Vector2(0.011236, 1), 0.0, 0.0, 0, 0, Vector2(0.623596, 0.010989), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5o2x8"]
-radius = 5.0
-height = 22.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sp2ya"]
 atlas = ExtResource("3_phkrk")
@@ -115,6 +108,18 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Curve" id="Curve_jla11"]
+_data = [Vector2(0.011236, 1), 0.0, 0.0, 0, 0, Vector2(0.623596, 0.010989), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5o2x8"]
+radius = 5.0
+height = 22.0
+
+[sub_resource type="Curve" id="Curve_6wv0r"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="Curve" id="Curve_cf6rf"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.353933, 0.362637), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
@@ -123,6 +128,14 @@ point_count = 3
 collision_layer = 6
 collision_mask = 6
 script = ExtResource("1_0pet2")
+
+[node name="Shadow" type="AnimatedSprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.231373)
+position = Vector2(4, 3)
+scale = Vector2(0.9, 0.9)
+sprite_frames = SubResource("SpriteFrames_tt4e7")
+animation = &"blue_idle"
+frame_progress = 0.564295
 
 [node name="HitParticles" type="CPUParticles2D" parent="."]
 scale = Vector2(0.584545, 0.575521)
@@ -146,6 +159,10 @@ shape = SubResource("CapsuleShape2D_5o2x8")
 [node name="Trail" parent="." instance=ExtResource("5_mmvgc")]
 position = Vector2(-77.5602, -0.511909)
 points = PackedVector2Array(77.5602, 1.51191)
+width = 24.0
+width_curve = SubResource("Curve_6wv0r")
+texture = ExtResource("3_vjhak")
+texture_mode = 1
 
 [node name="Anim" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_tt4e7")

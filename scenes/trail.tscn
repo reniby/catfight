@@ -5,7 +5,7 @@
 [node name="Trail" type="Line2D"]
 show_behind_parent = true
 texture_filter = 1
-width = 6.0
+width = 12.0
 default_color = Color(0.168627, 1, 1, 1)
 joint_mode = 2
 begin_cap_mode = 2
