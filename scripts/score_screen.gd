@@ -1,11 +1,15 @@
-extends TextEdit
+extends Label
 
 func _process(delta: float) -> void:
 	if Globals.winner == 0:
 		text = "It's a tie! woo xD"
 	else:
 		text = "Player " + str(Globals.winner) + " Wins!"
-	text += "\n P1: " + str(Globals.scores[0]) + " vs P2: " + str(Globals.scores[1])
+	#text += "\n P1: " + str(Globals.scores[0]) + " vs P2: " + str(Globals.scores[1]) + " "
+	
+	for i in range(len(Globals.players)):
+		if Globals.players[i]:
+			text += "\n P%d: " % (i+1) + str(Globals.scores[i])
 
 func _on_button_pressed() -> void:
 	Globals.resetGlobals()

@@ -10,7 +10,7 @@ position = Vector2(577, 324)
 scale = Vector2(1.63636, 2.01875)
 texture = ExtResource("1_msdr5")
 
-[node name="Score" type="TextEdit" parent="."]
+[node name="Score" type="Label" parent="."]
 offset_left = 227.0
 offset_top = 78.0
 offset_right = 927.0

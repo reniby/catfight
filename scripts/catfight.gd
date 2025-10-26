@@ -29,12 +29,18 @@ func _process(_delta):
 			player_scores[i].text = str(Globals.scores[i])
 
 func _on_game_timer_timeout() -> void:
-	#Globals.scores[0] = player_1.score
-	#Globals.scores[1] = player_2.score
-	#if player_1.score > player_2.score:
-		#Globals.winner = 1
-	#elif player_1.score < player_2.score:
-		#Globals.winner = 2
-	#else:
-		#Globals.winner = 0
+	var winners = find_all_indices(Globals.scores, Globals.scores.max())
+	print(Globals.scores.max())
+	print(winners)
+	if len(winners) ==  1:
+		Globals.winner = winners[0] + 1
+	else:
+		Globals.winner = 0
 	get_tree().change_scene_to_file("res://scenes/end_screen.tscn")
+	
+func find_all_indices(array_to_search: Array, target_element) -> Array:
+	var indices: Array = []
+	for i in range(array_to_search.size()):
+		if array_to_search[i] == target_element:
+			indices.append(i)
+	return indices
