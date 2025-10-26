@@ -30,8 +30,7 @@ func _process(_delta):
 
 func _on_game_timer_timeout() -> void:
 	var winners = find_all_indices(Globals.scores, Globals.scores.max())
-	print(Globals.scores.max())
-	print(winners)
+
 	if len(winners) ==  1:
 		Globals.winner = winners[0] + 1
 	else:
