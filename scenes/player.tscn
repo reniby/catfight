@@ -1,11 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://dsxn5ou3e4h0t"]
+[gd_scene load_steps=16 format=3 uid="uid://dsxn5ou3e4h0t"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_0pet2"]
-[ext_resource type="Texture2D" uid="uid://ddatbx2iqm4pj" path="res://assets/player_sprite.png" id="3_30e8q"]
 [ext_resource type="Texture2D" uid="uid://b2gs2mfpppkr0" path="res://assets/mc_ani_sheet.png" id="3_phkrk"]
 [ext_resource type="Texture2D" uid="uid://b8b74bj1rkxud" path="res://assets/tail_v0.0.png" id="3_vjhak"]
-[ext_resource type="Texture2D" uid="uid://dkc8dcn05ow0b" path="res://space_art/$Female_Snail.png" id="4_sfcvd"]
-[ext_resource type="Texture2D" uid="uid://cd3jnc3q1k4d0" path="res://space_art/2D Spaceship Sprites.png" id="5_mm3yy"]
 [ext_resource type="PackedScene" uid="uid://dx3230llssqwf" path="res://scenes/trail.tscn" id="5_mmvgc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sp2ya"]
@@ -31,26 +28,6 @@ region = Rect2(144, 0, 36, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_hm4xr"]
 atlas = ExtResource("3_phkrk")
 region = Rect2(180, 0, 36, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_eljj1"]
-atlas = ExtResource("3_30e8q")
-region = Rect2(0, 0, 30, 26)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gjxun"]
-atlas = ExtResource("4_sfcvd")
-region = Rect2(0, 144, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xx5cq"]
-atlas = ExtResource("4_sfcvd")
-region = Rect2(48, 144, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2kdhp"]
-atlas = ExtResource("4_sfcvd")
-region = Rect2(96, 144, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v8q0q"]
-atlas = ExtResource("5_mm3yy")
-region = Rect2(0, 0, 18, 20)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tt4e7"]
 animations = [{
@@ -79,7 +56,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_eljj1")
+"texture": SubResource("AtlasTexture_sp2ya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0w6g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0qf5w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_72dis")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ra4m8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hm4xr")
 }],
 "loop": true,
 "name": &"indigo_idle",
@@ -87,13 +79,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gjxun")
+"texture": SubResource("AtlasTexture_sp2ya")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xx5cq")
+"texture": SubResource("AtlasTexture_k0w6g")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2kdhp")
+"texture": SubResource("AtlasTexture_0qf5w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_72dis")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ra4m8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hm4xr")
 }],
 "loop": true,
 "name": &"pink_idle",
@@ -101,7 +102,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_v8q0q")
+"texture": SubResource("AtlasTexture_sp2ya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0w6g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0qf5w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_72dis")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ra4m8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hm4xr")
 }],
 "loop": true,
 "name": &"red_idle",
@@ -166,8 +182,7 @@ texture_mode = 1
 
 [node name="Anim" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_tt4e7")
-animation = &"blue_idle"
-frame_progress = 0.564295
+animation = &"red_idle"
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 amount = 4

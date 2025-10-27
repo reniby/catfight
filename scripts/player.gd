@@ -74,6 +74,7 @@ func _ready():
 	trail.default_color = character_skin[player]["color"]
 	particles.color = character_skin[player]['color']
 	hit_particles.color = character_skin[player]['color']
+	anim.modulate = character_skin[player]['color']
 
 func _physics_process(delta):
 	#var left = camera.get_viewport_rect().size.x/2 * -1
@@ -131,7 +132,7 @@ func player_controller(delta):
 		dash_timer.start()
 		var tween = get_tree().create_tween()
 		tween.tween_property(anim, "modulate", Color.RED, 0.5)
-		tween.tween_property(anim, "modulate", Color.WHITE, 0.5)
+		tween.tween_property(anim, "modulate", Color(character_skin[player]['color']), 0.5)
 		
 	anim.rotation = lerp_angle(anim.rotation, atan2(velocity.x, -velocity.y), delta*10.0)
 	shadow_anim.rotation = lerp_angle(shadow_anim.rotation, atan2(velocity.x, -velocity.y), delta*10.0)
