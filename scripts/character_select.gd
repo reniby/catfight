@@ -10,6 +10,7 @@ var shakeFade = 5.0
 
 func apply_shake():
 	shake_strength = randomStrength
+	
 var character_input = [{
 	"up": "up_p1", 
 	"down": "down_p1",
@@ -45,18 +46,24 @@ func _process(delta: float) -> void:
 	for player in range(4):
 		for action in actions:
 			if Input.is_action_just_pressed(character_input[player][action]):
+				var tween = get_tree().create_tween()
+				labels[player].add_theme_font_size_override("font_size", 100)
+				tween.tween_property(labels[player], "theme_override_font_sizes/font_size", 36, 0.5)
 				Globals.players[player] = !Globals.players[player]
 				apply_shake()
 				if Globals.players[player]:
 					Globals.numPlayers += 1
 				else:
 					Globals.numPlayers -= 1
+					if tween.is_running() and tween.is_valid():
+						tween.stop()
 				
-
+		
 		if Globals.players[player]:
 			labels[player].text = "Player %d Joined\nPress again to leave" % (player+1)
 		else:
 			labels[player].text = ""
+
 	
 	if Globals.numPlayers > 1:
 		press_play.text = "Press directional input to join!\nPress space to play!"
@@ -67,7 +74,6 @@ func _process(delta: float) -> void:
 		
 	if shake_strength > 0:
 		shake_strength = lerpf(shake_strength, 0, shakeFade * delta)
-		
 		camera_2d.offset = randomOffset()
 		
 func randomOffset():
