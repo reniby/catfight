@@ -25,7 +25,7 @@ window/stretch/mode="viewport"
 
 [gui]
 
-theme/custom_font="res://assets/fonts/Jacquard12-Regular.ttf"
+theme/custom_font="res://assets/fonts/MetalMania-Regular.ttf"
 
 [input]
 
