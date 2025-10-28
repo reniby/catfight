@@ -19,8 +19,8 @@ var x_facing = 0
 var y_facing = 0
 var can_dash = true
 var character_skin = [{
-	"color": "#17191b",
-	"anim": "blue_idle"
+	"color": "white",
+	"anim": "white_idle"
 },
 {
 	"color": "#FF3F7F",

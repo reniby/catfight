@@ -51,29 +51,6 @@ animations = [{
 "texture": SubResource("AtlasTexture_hm4xr")
 }],
 "loop": true,
-"name": &"blue_idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sp2ya")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k0w6g")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0qf5w")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_72dis")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ra4m8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hm4xr")
-}],
-"loop": true,
 "name": &"indigo_idle",
 "speed": 5.0
 }, {
@@ -122,6 +99,29 @@ animations = [{
 "loop": true,
 "name": &"red_idle",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sp2ya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0w6g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0qf5w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_72dis")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ra4m8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hm4xr")
+}],
+"loop": true,
+"name": &"white_idle",
+"speed": 5.0
 }]
 
 [sub_resource type="Curve" id="Curve_jla11"]
@@ -150,8 +150,7 @@ modulate = Color(0, 0, 0, 0.231373)
 position = Vector2(4, 3)
 scale = Vector2(0.9, 0.9)
 sprite_frames = SubResource("SpriteFrames_tt4e7")
-animation = &"blue_idle"
-frame_progress = 0.564295
+animation = &"white_idle"
 
 [node name="HitParticles" type="CPUParticles2D" parent="."]
 scale = Vector2(0.584545, 0.575521)
@@ -182,7 +181,7 @@ texture_mode = 1
 
 [node name="Anim" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_tt4e7")
-animation = &"red_idle"
+animation = &"white_idle"
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 amount = 4
