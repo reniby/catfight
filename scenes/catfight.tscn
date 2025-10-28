@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=4 uid="uid://bnycs8o7hatbv"]
 
-[ext_resource type="Script" path="res://scripts/catfight.gd" id="1_rkgal"]
-[ext_resource type="Shader" path="res://shaders/vignette.gdshader" id="4_3aryo"]
+[ext_resource type="Script" uid="uid://dpahu8oa4ca0d" path="res://scripts/catfight.gd" id="1_rkgal"]
+[ext_resource type="Shader" uid="uid://coyaad3lopfhl" path="res://shaders/vignette.gdshader" id="4_3aryo"]
 [ext_resource type="Texture2D" uid="uid://k1qm2wm88ph4" path="res://assets/tile.png" id="4_a2phh"]
-[ext_resource type="Script" path="res://scripts/timer.gd" id="7_o0l6i"]
+[ext_resource type="Script" uid="uid://bxmk0hcf2ra47" path="res://scripts/timer.gd" id="7_o0l6i"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kjaxb"]
 texture = ExtResource("4_a2phh")
@@ -18,7 +18,7 @@ sources/0 = SubResource("TileSetAtlasSource_kjaxb")
 shader = ExtResource("4_3aryo")
 shader_parameter/alpha = 10.0
 shader_parameter/inner_radius = 0.0
-shader_parameter/outer_radius = 30.0
+shader_parameter/outer_radius = 75.0
 shader_parameter/color = Color(0, 0, 0, 1)
 
 [node name="Catfight" type="Node2D"]

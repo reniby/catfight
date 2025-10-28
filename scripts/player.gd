@@ -67,6 +67,7 @@ var character_input = [{
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var count = 0
+
 func _ready():
 	trail = get_node("Trail")
 	anim.play(character_skin[player]["anim"])
@@ -97,28 +98,7 @@ func _physics_process(delta):
 		particles.emitting = true
 			
 	particles.initial_velocity_min = remap(velocity.length(),0, 1000,5,100)
-func death():
-	visible = false
 
-	set_collision_layer_value(2, false)
-	death_timer.start()
-	trail.clear_points()
-	for coll in trail.shapes:
-		coll.queue_free()
-		trail.shapes = []
-	
-func _on_death_timer_timeout() -> void:
-	position.x = 0
-	position.y = 0
-	visible = true
-	i_timer.start()
-	var tween = get_tree().create_tween()
-	for i in range(4):
-		tween.tween_property(anim, "modulate:a", 0.4, 0.25)
-		tween.tween_property(anim, "modulate:a", 1, 0.25)
-		
-func _on_i_timer_timeout() -> void:
-	set_collision_layer_value(2, true)
 
 func player_controller(delta):
 	var direction = Input.get_vector(character_input[player]["left"], character_input[player]["right"], character_input[player]["up"], character_input[player]["down"])
@@ -137,7 +117,37 @@ func player_controller(delta):
 	anim.rotation = lerp_angle(anim.rotation, atan2(velocity.x, -velocity.y), delta*10.0)
 	shadow_anim.rotation = lerp_angle(shadow_anim.rotation, atan2(velocity.x, -velocity.y), delta*10.0)
 	collision_shape.rotation = lerp_angle(anim.rotation, atan2(velocity.x, -velocity.y), delta*10.0)
+
+func death():
+	visible = false
 	
+	particles.emitting = false
+	particles.restart()
+
+	set_collision_layer_value(2, false)
+	death_timer.start()
+	trail.clear_points()
+	for coll in trail.shapes:
+		coll.queue_free()
+		trail.shapes = []
+
+
+func _on_death_timer_timeout() -> void:
+	position.x = 0
+	position.y = 0
+	visible = true
+	i_timer.start()
+	var tween = get_tree().create_tween()
+	for i in range(4):
+		tween.tween_property(anim, "modulate:a", 0.4, 0.25)
+		tween.tween_property(anim, "modulate:a", 1, 0.25)
+		
+func _on_i_timer_timeout() -> void:
+	set_collision_layer_value(2, true)
 
 func _on_dash_timer_timeout() -> void:
 	can_dash = true
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body is CharacterBody2D and get_parent().player != body.player:
+		body.death()
