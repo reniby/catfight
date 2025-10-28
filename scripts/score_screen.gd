@@ -5,7 +5,6 @@ func _process(delta: float) -> void:
 		text = "It's a tie! woo xD"
 	else:
 		text = "Player " + str(Globals.winner) + " Wins!"
-	#text += "\n P1: " + str(Globals.scores[0]) + " vs P2: " + str(Globals.scores[1]) + " "
 	
 	for i in range(len(Globals.players)):
 		if Globals.players[i]:

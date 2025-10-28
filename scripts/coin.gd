@@ -1,14 +1,25 @@
 extends Node2D
-@onready var particles: CPUParticles2D = $AmbientParticles
 
 var max_y: int = 250
 var max_x: int = 460
 var rng = RandomNumberGenerator.new()
+
 @onready var area: Area2D = $Area2D
-@onready var sprite: AnimatedSprite2D = $Sprite2D
-@onready var coin_timer: Timer = $CoinTimer
+@onready var sprite: AnimatedSprite2D
+@onready var particles: CPUParticles2D = $AmbientParticles
+
+@onready var coin_sprite: AnimatedSprite2D = $Sprites/CoinSprite
+@onready var pickup_timer: Timer = $PickupTimer
+@onready var pickup_behavior: Callable
+
+@export_enum("Coin", "Speed") var pickup_type: String
 
 func _ready() -> void:
+	if pickup_type == "Coin":
+		sprite = coin_sprite
+		pickup_timer.wait_time = 1
+		pickup_behavior = Callable(self, "coin_behavior")
+	sprite.visible = true
 	choose_location()
 
 func _physics_process(_delta: float) -> void:
@@ -16,8 +27,8 @@ func _physics_process(_delta: float) -> void:
 
 	for body in area.get_overlapping_bodies():
 		if body is CharacterBody2D:
-			Globals.scores[body.player] += 1
-			coin_timer.start()
+			pickup_behavior.call(body.player)
+			pickup_timer.start()
 
 		sprite.visible = false
 		
@@ -29,7 +40,7 @@ func _physics_process(_delta: float) -> void:
 		choose_location()
 
 
-	if not overlapping and not coin_timer.time_left:
+	if not overlapping and not pickup_timer.time_left:
 		sprite.set_deferred("visible", true)
 		particles.emitting = true
 		particles.visible = true
@@ -41,13 +52,10 @@ func _physics_process(_delta: float) -> void:
 		tween.set_parallel()
 		tween.tween_property(sprite, "scale", Vector2(1,1), 0.3)
 		
-
 func choose_location():
 	var x = rng.randf_range(-max_x / 2, max_x / 2)
 	var y = rng.randf_range(-max_y / 2, max_y / 2)
 	position = Vector2(x, y)
 
-func emit():
-	particles.emitting = true
-
-	
+func coin_behavior(player):
+	Globals.scores[player] += 1
