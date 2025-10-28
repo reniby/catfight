@@ -1,6 +1,5 @@
 extends Node2D
 @onready var particles: CPUParticles2D = $AmbientParticles
-@onready var collection_particles: CPUParticles2D = $CollectionParticles
 
 var max_y: int = 250
 var max_x: int = 460
@@ -17,7 +16,6 @@ func _physics_process(_delta: float) -> void:
 
 	for body in area.get_overlapping_bodies():
 		if body is CharacterBody2D:
-			collection_particles.restart()
 			Globals.scores[body.player] += 1
 			coin_timer.start()
 

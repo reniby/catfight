@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cowem0i0pp2jf"]
 
-[ext_resource type="Script" uid="uid://doo2ym4432gsg" path="res://scripts/coin.gd" id="1_dulcj"]
+[ext_resource type="Script" path="res://scripts/coin.gd" id="1_dulcj"]
 [ext_resource type="Texture2D" uid="uid://bxxtm2bgl27te" path="res://assets/collectible-spirit.png" id="2_2b6wr"]
 
 [sub_resource type="Curve" id="Curve_i64fm"]
@@ -36,8 +36,7 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1b022"]
-size = Vector2(40.25, 39.6875)
+[sub_resource type="CircleShape2D" id="CircleShape2D_mx3en"]
 
 [node name="Coin" type="Node2D"]
 script = ExtResource("1_dulcj")
@@ -70,12 +69,14 @@ autoplay = "default"
 frame_progress = 0.0799927
 
 [node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(0.6, 0.6)
 collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 0.15625)
-shape = SubResource("RectangleShape2D_1b022")
+scale = Vector2(1.6, 1.6)
+shape = SubResource("CircleShape2D_mx3en")
 
 [node name="CoinTimer" type="Timer" parent="."]
 one_shot = true

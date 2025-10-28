@@ -14,6 +14,7 @@ const JUMP_VELOCITY = -800.0
 @onready var hit_particles: CPUParticles2D = $HitParticles
 @onready var shadow_anim: AnimatedSprite2D = $Shadow
 
+
 var trail
 var x_facing = 0
 var y_facing = 0
@@ -21,6 +22,10 @@ var can_dash = true
 var character_skin = [{
 	"color": "white",
 	"anim": "white_idle"
+},
+{
+	"color": "black",#17191b",
+	"anim": "blue_idle"
 },
 {
 	"color": "#FF3F7F",
@@ -76,6 +81,8 @@ func _ready():
 	particles.color = character_skin[player]['color']
 	hit_particles.color = character_skin[player]['color']
 	anim.modulate = character_skin[player]['color']
+	if player == 0:
+		anim.modulate = "white"
 
 func _physics_process(delta):
 	#var left = camera.get_viewport_rect().size.x/2 * -1
@@ -88,7 +95,7 @@ func _physics_process(delta):
 	move_and_slide()
 	if get_last_slide_collision() != null and get_last_slide_collision().get_collider() is CharacterBody2D:
 		var collision = get_last_slide_collision()
-		velocity = Vector2(cos(get_angle_to(collision.get_position()) - 3*PI/4), sin(get_angle_to(collision.get_position()) - 3*PI/4)).normalized() * SPEED * 2
+		velocity = Vector2(cos(get_angle_to(collision.get_position()) - 3*PI/4), sin(get_angle_to(collision.get_position()) - 3*PI/4)).normalized() * SPEED * 1.2
 		hit_particles.global_position = collision.get_position()
 		hit_particles.restart()
 	particles.rotation = anim.rotation + PI/2
@@ -123,13 +130,14 @@ func death():
 	
 	particles.emitting = false
 	particles.restart()
-
 	set_collision_layer_value(2, false)
 	death_timer.start()
 	trail.clear_points()
 	for coll in trail.shapes:
 		coll.queue_free()
 		trail.shapes = []
+	
+	
 
 
 func _on_death_timer_timeout() -> void:
