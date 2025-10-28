@@ -6,10 +6,10 @@ extends Node2D
 var player_scene: PackedScene = preload("res://scenes/player.tscn")
 var title = "Reaper Madness :D"
 var player_positions = [
-	Vector2(-500, -250),
-	Vector2(500,-250),
-	Vector2(-500, 250),
-	Vector2(500,250)
+	Vector2(-90, -30),
+	Vector2(-30,-30),
+	Vector2(30, -30),
+	Vector2(90, -30)
 ]
 
 func _ready():

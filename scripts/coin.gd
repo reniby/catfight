@@ -2,8 +2,8 @@ extends Node2D
 @onready var particles: CPUParticles2D = $AmbientParticles
 @onready var collection_particles: CPUParticles2D = $CollectionParticles
 
-var max_y: int = 594
-var max_x: int = 1086
+var max_y: int = 250
+var max_x: int = 460
 var rng = RandomNumberGenerator.new()
 @onready var area: Area2D = $Area2D
 @onready var sprite: AnimatedSprite2D = $Sprite2D
@@ -16,20 +16,25 @@ func _physics_process(_delta: float) -> void:
 	var overlapping = false
 
 	for body in area.get_overlapping_bodies():
-		collection_particles.restart()
-		#hide()
-		
-		particles.emitting = false
-		particles.restart()
-		overlapping = true
-		choose_location()
 		if body is CharacterBody2D:
-			
+			collection_particles.restart()
 			Globals.scores[body.player] += 1
 			coin_timer.start()
 
+		sprite.visible = false
+		
+		particles.restart()
+		particles.emitting = false
+		particles.visible = false
+		
+		overlapping = true
+		choose_location()
+
+
 	if not overlapping and not coin_timer.time_left:
-		call_deferred("show")
+		sprite.set_deferred("visible", true)
+		particles.emitting = true
+		particles.visible = true
 		
 		sprite.scale = Vector2(0,0)
 		sprite.rotation = 0

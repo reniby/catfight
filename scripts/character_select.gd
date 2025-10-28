@@ -66,8 +66,8 @@ func _process(delta: float) -> void:
 
 	
 	if Globals.numPlayers > 1:
-		press_play.text = "Press directional input to join!\nPress space to play!"
-		if Input.is_action_just_pressed("dash_p2"):
+		press_play.text = "Press directional input to join!\nPress esc to play!"
+		if Input.is_action_just_pressed("start"):
 			get_tree().change_scene_to_file("res://scenes/catfight.tscn")
 	else:
 		press_play.text = "Press directional input to join!"
