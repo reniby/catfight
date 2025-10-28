@@ -57,14 +57,12 @@ func _process(delta: float) -> void:
 					Globals.numPlayers -= 1
 					if tween.is_running() and tween.is_valid():
 						tween.stop()
-				
 		
 		if Globals.players[player]:
 			labels[player].text = "Player %d Joined\nPress again to leave" % (player+1)
 		else:
 			labels[player].text = ""
 
-	
 	if Globals.numPlayers > 1:
 		press_play.text = "Press directional input to join!\nPress esc to play!"
 		if Input.is_action_just_pressed("start"):

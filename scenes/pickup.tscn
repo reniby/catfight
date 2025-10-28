@@ -1,22 +1,21 @@
-[gd_scene load_steps=9 format=3 uid="uid://cowem0i0pp2jf"]
+[gd_scene load_steps=8 format=3 uid="uid://cowem0i0pp2jf"]
 
-[ext_resource type="Script" path="res://scripts/coin.gd" id="1_dulcj"]
-[ext_resource type="Texture2D" uid="uid://bxxtm2bgl27te" path="res://assets/collectible-spirit.png" id="2_2b6wr"]
+[ext_resource type="Script" uid="uid://doo2ym4432gsg" path="res://scripts/coin.gd" id="1_7cqbe"]
+[ext_resource type="Texture2D" uid="uid://bxxtm2bgl27te" path="res://assets/collectible-spirit.png" id="2_gyxxy"]
 
-[sub_resource type="Curve" id="Curve_i64fm"]
-_data = [Vector2(0.0406504, 0.981831), 0.0, 0.0, 0, 0, Vector2(0.833333, 0), 0.0, 0.0, 0, 0]
-point_count = 2
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1b022"]
+size = Vector2(40.25, 39.6875)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6elf1"]
-atlas = ExtResource("2_2b6wr")
+atlas = ExtResource("2_gyxxy")
 region = Rect2(0, 0, 22, 22)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2ln0u"]
-atlas = ExtResource("2_2b6wr")
+atlas = ExtResource("2_gyxxy")
 region = Rect2(22, 0, 22, 22)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l83m1"]
-atlas = ExtResource("2_2b6wr")
+atlas = ExtResource("2_gyxxy")
 region = Rect2(44, 0, 22, 22)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0vmkb"]
@@ -36,24 +35,9 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_mx3en"]
-
-[node name="Coin" type="Node2D"]
-script = ExtResource("1_dulcj")
-
-[node name="CollectionParticles" type="CPUParticles2D" parent="."]
-emitting = false
-amount = 25
-lifetime = 2.0
-one_shot = true
-explosiveness = 1.0
-randomness = 1.0
-spread = 180.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 10.0
-initial_velocity_max = 50.0
-scale_amount_curve = SubResource("Curve_i64fm")
-color = Color(0.713726, 0.909804, 0.74902, 1)
+[node name="Pickup" type="Node2D"]
+script = ExtResource("1_7cqbe")
+pickup_type = "Coin"
 
 [node name="AmbientParticles" type="CPUParticles2D" parent="."]
 amount = 4
@@ -70,17 +54,23 @@ autoplay = "default"
 frame_progress = 0.0799927
 
 [node name="Area2D" type="Area2D" parent="."]
-scale = Vector2(0.6, 0.6)
 collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 0.15625)
-scale = Vector2(1.6, 1.6)
-shape = SubResource("CircleShape2D_mx3en")
+shape = SubResource("RectangleShape2D_1b022")
 
-[node name="CoinTimer" type="Timer" parent="."]
+[node name="PickupTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="CoinSprite" type="AnimatedSprite2D" parent="Sprites"]
+visible = false
+sprite_frames = SubResource("SpriteFrames_0vmkb")
+autoplay = "default"
+frame_progress = 0.0799927
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="timeout" from="CoinTimer" to="." method="_on_coin_timer_timeout"]
+[connection signal="timeout" from="PickupTimer" to="." method="_on_coin_timer_timeout"]
