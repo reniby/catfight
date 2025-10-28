@@ -1,6 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://bm6l0lojw3d1m"]
+[gd_scene load_steps=6 format=3 uid="uid://bm6l0lojw3d1m"]
 
-[ext_resource type="Script" uid="uid://s1t4cguoj2pm" path="res://scripts/menu.gd" id="1_ybihw"]
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_ybihw"]
+[ext_resource type="Shader" path="res://shaders/vignette.gdshader" id="2_0rmuw"]
+[ext_resource type="Shader" path="res://shaders/chromatic_aberration.gdshader" id="3_u3x0u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_81fud"]
+shader = ExtResource("2_0rmuw")
+shader_parameter/alpha = 10.0
+shader_parameter/inner_radius = 0.0
+shader_parameter/outer_radius = 30.0
+shader_parameter/color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gxtpp"]
+shader = ExtResource("3_u3x0u")
+shader_parameter/r_displacement = Vector2(3, 0)
+shader_parameter/g_displacement = Vector2(0, 3)
+shader_parameter/b_displacement = Vector2(-3, 0)
 
 [node name="Menu" type="Node2D"]
 script = ExtResource("1_ybihw")
@@ -12,6 +27,21 @@ offset_right = 585.0
 offset_bottom = 361.0
 scale = Vector2(2, 1.909)
 color = Color(0.270588, 0.156863, 0.235294, 1)
+
+[node name="Vignette" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_81fud")
+offset_left = -118.0
+offset_top = -37.0
+offset_right = 1258.0
+offset_bottom = 716.0
+
+[node name="ChromaticAbb" type="ColorRect" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_gxtpp")
+offset_left = -118.0
+offset_top = -37.0
+offset_right = 1258.0
+offset_bottom = 716.0
 
 [node name="Timed" type="Button" parent="."]
 offset_left = 225.0
