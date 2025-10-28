@@ -38,7 +38,20 @@ size = Vector2(40.25, 39.6875)
 [node name="Coin" type="Node2D"]
 script = ExtResource("1_dulcj")
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+[node name="CollectionParticles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 50
+lifetime = 2.0
+one_shot = true
+preprocess = 1.0
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+color = Color(0.713726, 0.909804, 0.74902, 1)
+
+[node name="AmbientParticles" type="CPUParticles2D" parent="."]
 amount = 4
 spread = 180.0
 gravity = Vector2(0, 0)
