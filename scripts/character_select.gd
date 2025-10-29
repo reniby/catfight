@@ -40,7 +40,7 @@ var character_input = [{
 	"dash": "dash_p4"
 }
 ]
-var actions = ['left', 'right', 'up', 'down']
+var actions = ['left', 'right', 'up', 'down', 'dash']
 
 func _process(delta: float) -> void:
 	for player in range(4):
