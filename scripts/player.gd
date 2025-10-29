@@ -13,6 +13,9 @@ const JUMP_VELOCITY = -800.0
 @onready var particles: CPUParticles2D = $CPUParticles2D
 @onready var hit_particles: CPUParticles2D = $HitParticles
 @onready var shadow_anim: AnimatedSprite2D = $Shadow
+@onready var tail_scene = preload("res://scenes/trail.tscn")
+@onready var can_drop_tail = true
+@onready var tail_drop_wait = 2
 
 
 var trail
@@ -44,28 +47,32 @@ var character_input = [{
 	"down": "down_p1",
 	"left": "left_p1",
 	"right": "right_p1",
-	"dash": "dash_p1"
+	"dash": "dash_p1",
+	"drop": "tail_drop_p1"
 },
 {
 	"up": "up_p2", 
 	"down": "down_p2",
 	"left": "left_p2",
 	"right": "right_p2",
-	"dash": "dash_p2"
+	"dash": "dash_p2",
+	"drop": "tail_drop_p2"
 },
 {
 	"up": "up_p3", 
 	"down": "down_p3",
 	"left": "left_p3",
 	"right": "right_p3",
-	"dash": "dash_p3"
+	"dash": "dash_p3",
+	"drop": "tail_drop_p3"
 },
 {
 	"up": "up_p4", 
 	"down": "down_p4",
 	"left": "left_p4",
 	"right": "right_p4",
-	"dash": "dash_p4"
+	"dash": "dash_p4",
+	"drop": "tail_drop_p4"
 }
 ]
 
@@ -105,6 +112,7 @@ func _physics_process(delta):
 		particles.emitting = true
 			
 	particles.initial_velocity_min = remap(velocity.length(),0, 1000,5,100)
+	tail_drop()
 
 
 func player_controller(delta):
@@ -159,3 +167,35 @@ func _on_dash_timer_timeout() -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D and get_parent().player != body.player:
 		body.death()
+
+func tail_drop():
+	if Input.is_action_just_pressed(character_input[player]["drop"]) and can_drop_tail:
+		can_drop_tail = false
+		var tail_obst: Line2D = tail_scene.instantiate()
+		tail_obst.texture = trail.texture
+		tail_obst.width = trail.width
+		tail_obst.texture_mode = trail.texture_mode
+		tail_obst.default_color = trail.default_color
+		get_parent().add_child(tail_obst)
+		tail_obst.z_index = 100
+		tail_obst.player = player
+		
+		for i in range(1,len(trail.points)):
+			tail_obst.add_point(trail.points[i])
+			var shape = CollisionShape2D.new()
+			tail_obst.area.add_child(shape)
+			var segment = SegmentShape2D.new()
+			segment.a = trail.points[i-1]
+			segment.b = trail.points[i]
+			shape.shape = segment
+		
+		await get_tree().create_timer(1.0).timeout
+		
+		while tail_obst.points.size() > 0 and is_instance_valid(tail_obst):
+			tail_obst.remove_point(0) 
+			tail_obst.remove_point(len(tail_obst.points) - 1)
+			await get_tree().create_timer(0.05).timeout 
+		
+		if is_instance_valid(tail_obst):
+			can_drop_tail = true
+			tail_obst.queue_free()
