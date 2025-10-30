@@ -15,9 +15,9 @@ const JUMP_VELOCITY = -800.0
 @onready var shadow_anim: AnimatedSprite2D = $Shadow
 @onready var tail_scene = preload("res://scenes/trail.tscn")
 @onready var can_drop_tail = true
-@onready var tail_drop_wait = 2
 
 
+var tail_obst: Line2D
 var trail
 var x_facing = 0
 var y_facing = 0
@@ -112,7 +112,8 @@ func _physics_process(delta):
 		particles.emitting = true
 			
 	particles.initial_velocity_min = remap(velocity.length(),0, 1000,5,100)
-	tail_drop()
+
+	alt_tail_drop()
 
 
 func player_controller(delta):
@@ -199,3 +200,40 @@ func tail_drop():
 		if is_instance_valid(tail_obst):
 			can_drop_tail = true
 			tail_obst.queue_free()
+			
+			
+func alt_tail_drop():
+	
+	var highlight_color = 'cyan'
+	
+	
+	if Input.is_action_just_pressed(character_input[player]["drop"]) and can_drop_tail:
+		can_drop_tail = false
+		tail_obst = tail_scene.instantiate()
+		tail_obst.texture = trail.texture
+		tail_obst.width = trail.width
+		tail_obst.texture_mode = trail.texture_mode
+		tail_obst.default_color = highlight_color
+		tail_obst.length = 1
+		add_child(tail_obst)
+		tail_obst.player = player
+		
+	if Input.is_action_pressed(character_input[player]["drop"]):
+		if is_instance_valid(tail_obst) and tail_obst.length < trail.length:
+			tail_obst.length += 0.3
+
+	if Input.is_action_just_released(character_input[player]["drop"]) and is_instance_valid(tail_obst):
+		tail_obst.z_index = 3
+		tail_obst.reparent(get_parent())
+		await get_tree().create_timer(1.0).timeout
+		
+		while is_instance_valid(tail_obst) and tail_obst.points.size() > 1:
+			tail_obst.remove_point(0) 
+			tail_obst.remove_point(len(tail_obst.points) - 1)
+			await get_tree().create_timer(0.05).timeout 
+		
+		if is_instance_valid(tail_obst):
+			can_drop_tail = true
+			tail_obst.queue_free()
+				
+		pass
