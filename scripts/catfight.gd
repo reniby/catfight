@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var pickup_scnene: PackedScene = preload("res://scenes/pickup.tscn")
+@export var pickup_scene: PackedScene = preload("res://scenes/pickup.tscn")
 @onready var player_scores: Array[Label] = [$Labels/P1, $Labels/P2, $Labels/P3, $Labels/P4]
 
 var player_scene: PackedScene = preload("res://scenes/player.tscn")
@@ -13,13 +13,16 @@ var player_positions = [
 ]
 
 func _ready():
+	var child = pickup_scene.instantiate()
+	child.pickup_type = "Speed"
+	add_child(child)
 	for i in range(Globals.numPlayers-1):
-		var child = pickup_scnene.instantiate()
+		child = pickup_scene.instantiate()
 		child.pickup_type = "Coin"
 		add_child(child)
 	for i in range(len(Globals.players)):
 		if Globals.players[i]:
-			var child = player_scene.instantiate()
+			child = player_scene.instantiate()
 			child.player = i
 			add_child(child)
 			child.global_position = player_positions[i]

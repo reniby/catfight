@@ -9,6 +9,7 @@ var rng = RandomNumberGenerator.new()
 @onready var particles: CPUParticles2D = $AmbientParticles
 
 @onready var coin_sprite: AnimatedSprite2D = $Sprites/CoinSprite
+@onready var speed_sprite: AnimatedSprite2D = $Sprites/SpeedSprite
 @onready var pickup_timer: Timer = $PickupTimer
 @onready var pickup_behavior: Callable
 
@@ -19,6 +20,10 @@ func _ready() -> void:
 		sprite = coin_sprite
 		pickup_timer.wait_time = 1
 		pickup_behavior = Callable(self, "coin_behavior")
+	elif pickup_type == "Speed":
+		sprite = speed_sprite
+		pickup_timer.wait_time = 5
+		pickup_behavior = Callable(self, "speed_behavior")
 	sprite.visible = true
 	choose_location()
 
@@ -27,7 +32,7 @@ func _physics_process(_delta: float) -> void:
 
 	for body in area.get_overlapping_bodies():
 		if body is CharacterBody2D:
-			pickup_behavior.call(body.player)
+			pickup_behavior.call(body)
 			pickup_timer.start()
 
 		sprite.visible = false
@@ -57,5 +62,9 @@ func choose_location():
 	var y = rng.randf_range(-max_y / 2, max_y / 2)
 	position = Vector2(x, y)
 
-func coin_behavior(player):
-	Globals.scores[player] += 1
+func coin_behavior(playerBody):
+	Globals.scores[playerBody.player] += 1
+
+func speed_behavior(playerBody):
+	playerBody.speed_timer.start()
+	playerBody.curr_speed += 250

@@ -6,15 +6,19 @@ const JUMP_VELOCITY = -800.0
 @export var player: int
 @onready var death_timer: Timer = $Timer/DeathTimer
 @onready var i_timer: Timer = $Timer/ITimer
+@onready var dash_timer: Timer = $Timer/DashTimer
+@onready var speed_timer: Timer = $Timer/SpeedTimer
+
 @onready var camera = $"../Camera2D"
 @onready var anim: AnimatedSprite2D = $Anim
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
-@onready var dash_timer: Timer = $Timer/DashTimer
 @onready var particles: CPUParticles2D = $CPUParticles2D
 @onready var hit_particles: CPUParticles2D = $HitParticles
 @onready var shadow_anim: AnimatedSprite2D = $Shadow
 @onready var tail_scene = preload("res://scenes/trail.tscn")
 @onready var can_drop_tail = true
+@onready var curr_speed: int = SPEED
+@onready var invincible: bool = false
 
 
 var tail_obst: Line2D
@@ -102,7 +106,7 @@ func _physics_process(delta):
 	move_and_slide()
 	if get_last_slide_collision() != null and get_last_slide_collision().get_collider() is CharacterBody2D:
 		var collision = get_last_slide_collision()
-		velocity = Vector2(cos(get_angle_to(collision.get_position()) - 3*PI/4), sin(get_angle_to(collision.get_position()) - 3*PI/4)).normalized() * SPEED * 1.2
+		velocity = Vector2(cos(get_angle_to(collision.get_position()) - 3*PI/4), sin(get_angle_to(collision.get_position()) - 3*PI/4)).normalized() * curr_speed * 1.2
 		hit_particles.global_position = collision.get_position()
 		hit_particles.restart()
 	particles.rotation = anim.rotation + PI/2
@@ -119,13 +123,14 @@ func _physics_process(delta):
 func player_controller(delta):
 	var direction = Input.get_vector(character_input[player]["left"], character_input[player]["right"], character_input[player]["up"], character_input[player]["down"])
 	if direction:
-		velocity = velocity.lerp(direction * SPEED, 5*delta)
+		velocity = velocity.lerp(direction * curr_speed, 5*delta)
 	else:
 		velocity = velocity.lerp(Vector2(0,0), 5 * delta)
 	if Input.is_action_just_pressed(character_input[player]["dash"]) and can_dash:
-		velocity = Vector2(cos(anim.rotation - PI/2), sin(anim.rotation - PI/2)).normalized() * SPEED * 5 
+		velocity = Vector2(cos(anim.rotation - PI/2), sin(anim.rotation - PI/2)).normalized() * curr_speed * 5 
 		can_dash = false
 		dash_timer.start()
+		invincible = true
 		var tween = get_tree().create_tween()
 		tween.tween_property(anim, "modulate", Color.RED, 0.5)
 		tween.tween_property(anim, "modulate", Color(character_skin[player]['color']), 0.5)
@@ -145,9 +150,6 @@ func death():
 	for coll in trail.shapes:
 		coll.queue_free()
 		trail.shapes = []
-	
-	
-
 
 func _on_death_timer_timeout() -> void:
 	position.x = 0
@@ -164,9 +166,10 @@ func _on_i_timer_timeout() -> void:
 
 func _on_dash_timer_timeout() -> void:
 	can_dash = true
+	invincible = false
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body is CharacterBody2D and get_parent().player != body.player:
+	if body is CharacterBody2D and get_parent().player != body.player and not invincible:
 		body.death()
 
 func tail_drop():
@@ -237,3 +240,5 @@ func alt_tail_drop():
 			tail_obst.queue_free()
 				
 		pass
+func _on_speed_timer_timeout() -> void:
+	curr_speed = SPEED

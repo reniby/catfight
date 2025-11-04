@@ -6,15 +6,15 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1b022"]
 size = Vector2(40.25, 39.6875)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6elf1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7cqbe"]
 atlas = ExtResource("2_gyxxy")
 region = Rect2(0, 0, 22, 22)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2ln0u"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gyxxy"]
 atlas = ExtResource("2_gyxxy")
 region = Rect2(22, 0, 22, 22)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_l83m1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4m06l"]
 atlas = ExtResource("2_gyxxy")
 region = Rect2(44, 0, 22, 22)
 
@@ -22,13 +22,13 @@ region = Rect2(44, 0, 22, 22)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6elf1")
+"texture": SubResource("AtlasTexture_7cqbe")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2ln0u")
+"texture": SubResource("AtlasTexture_gyxxy")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_l83m1")
+"texture": SubResource("AtlasTexture_4m06l")
 }],
 "loop": true,
 "name": &"default",
@@ -68,6 +68,13 @@ one_shot = true
 
 [node name="CoinSprite" type="AnimatedSprite2D" parent="Sprites"]
 visible = false
+sprite_frames = SubResource("SpriteFrames_0vmkb")
+autoplay = "default"
+frame_progress = 0.0799927
+
+[node name="SpeedSprite" type="AnimatedSprite2D" parent="Sprites"]
+visible = false
+rotation = 3.14159
 sprite_frames = SubResource("SpriteFrames_0vmkb")
 autoplay = "default"
 frame_progress = 0.0799927
