@@ -64,6 +64,7 @@ initial_velocity_max = 14.0
 color = Color(0.713726, 0.909804, 0.74902, 1)
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_0vmkb")
 autoplay = "default"
 frame_progress = 0.0799927
