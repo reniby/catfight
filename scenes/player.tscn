@@ -192,8 +192,9 @@ texture = SubResource("AnimatedTexture_wa2cp")
 texture_mode = 1
 
 [node name="Anim" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_tt4e7")
-animation = &"white_idle"
+animation = &"red_idle"
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 amount = 4
