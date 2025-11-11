@@ -5,11 +5,9 @@ var max_x: int = 460
 var rng = RandomNumberGenerator.new()
 
 @onready var area: Area2D = $Area2D
-@onready var sprite: AnimatedSprite2D
 @onready var particles: CPUParticles2D = $AmbientParticles
 
-@onready var coin_sprite: AnimatedSprite2D = $Sprites/CoinSprite
-@onready var speed_sprite: AnimatedSprite2D = $Sprites/SpeedSprite
+@onready var sprite: AnimatedSprite2D = $Sprite
 @onready var pickup_timer: Timer = $PickupTimer
 @onready var pickup_behavior: Callable
 
@@ -17,14 +15,13 @@ var rng = RandomNumberGenerator.new()
 
 func _ready() -> void:
 	if pickup_type == "Coin":
-		sprite = coin_sprite
+		sprite.play("Ghost")
 		pickup_timer.wait_time = 1
 		pickup_behavior = Callable(self, "coin_behavior")
 	elif pickup_type == "Speed":
-		sprite = speed_sprite
+		sprite.play("Coin")
 		pickup_timer.wait_time = 5
 		pickup_behavior = Callable(self, "speed_behavior")
-	sprite.visible = true
 	choose_location()
 
 func _physics_process(_delta: float) -> void:

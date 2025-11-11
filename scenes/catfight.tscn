@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://foqgeyaiklu3" path="res://assets/floor.png" id="4_qth0n"]
 [ext_resource type="Texture2D" uid="uid://buaetky45hxls" path="res://assets/tile_proto.png" id="5_iimfw"]
 [ext_resource type="Texture2D" uid="uid://bj3llpwnetq6t" path="res://assets/tile_spawnpoint.png" id="6_5htqm"]
-[ext_resource type="Script" path="res://scripts/timer.gd" id="7_o0l6i"]
 [ext_resource type="Script" uid="uid://bxmk0hcf2ra47" path="res://scripts/timer.gd" id="7_o0l6i"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kjaxb"]

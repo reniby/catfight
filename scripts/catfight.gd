@@ -14,8 +14,11 @@ var player_positions = [
 
 func _ready():
 	var child = pickup_scene.instantiate()
-	child.pickup_type = "Speed"
-	add_child(child)
+	
+	# Add Speed-up Pickup
+	#child.pickup_type = "Speed"
+	#add_child(child)
+
 	for i in range(Globals.numPlayers-1):
 		child = pickup_scene.instantiate()
 		child.pickup_type = "Coin"
