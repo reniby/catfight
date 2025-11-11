@@ -113,7 +113,7 @@ func _physics_process(delta):
 			
 	particles.initial_velocity_min = remap(velocity.length(),0, 1000,5,100)
 
-	alt_tail_drop()
+	#tail_drop()
 
 
 func player_controller(delta):
