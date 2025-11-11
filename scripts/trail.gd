@@ -6,13 +6,18 @@ extends Line2D
 var point = Vector2()
 var prev = null
 var active = true
+var player
 
 func _ready():
+	if get_parent() is CharacterBody2D:
+		player = get_parent().player
+	else:
+		player = -1
 	while get_point_count() > 0:
 		remove_point(0)
 
 func _physics_process(_delta):
-	if get_parent().visible:
+	if get_parent().visible and get_parent() is CharacterBody2D:
 		if get_parent().velocity != Vector2(0,0):
 			global_position = Vector2(0,0)
 			global_rotation = 0
@@ -36,5 +41,5 @@ func _physics_process(_delta):
 			remove_point(0)
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body is CharacterBody2D and get_parent().player != body.player:
+	if body is CharacterBody2D and player != body.player:
 		body.death()
