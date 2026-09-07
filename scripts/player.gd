@@ -56,6 +56,8 @@ const BOUNCE_TIME = 0.05
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var count = 0
 
+@onready var i_tween: Tween
+
 func _ready():
 	global_position = starting_position
 	if bot:
@@ -205,12 +207,12 @@ func _on_death_timer_timeout() -> void:
 
 	trail.length = trail.starting_length
 	i_timer.start()
-	var tween = get_tree().create_tween()
+	i_tween = get_tree().create_tween()
 	var tail_tween = get_tree().create_tween()
 	
 	for i in range(10):
-		tween.tween_property(anim, "modulate:a", 0.2, 0.1)
-		tween.tween_property(anim, "modulate:a", 1, 0.1)
+		i_tween.tween_property(anim, "modulate:a", 0.2, 0.1)
+		i_tween.tween_property(anim, "modulate:a", 1, 0.1)
 		
 		tail_tween.tween_property(trail, "modulate:a", 0.2, 0.1)
 		tail_tween.tween_property(trail, "modulate:a", 1, 0.1)
@@ -302,8 +304,8 @@ func dash(player_num):
 	can_dash = false
 	dash_timer.start()
 	invincible = true
-	var tween = get_tree().create_tween()
-	tween.tween_property(anim, "modulate", Color(1,1,1), 1).from(Color(2,2,2))
-	tween.parallel()
-	tween.tween_property(trail, "modulate", Color(1,1,1), 1).from(Color(2,2,2))
-	#tween.tween_property(anim, "modulate", Color(Globals.character_skin[Globals.colors[player]]['color']), 0.5)
+	if i_tween == null or not i_tween.is_running():
+		var dash_tween = get_tree().create_tween()
+		dash_tween.tween_property(anim, "modulate", Color(1,1,1), 1).from(Color(2,2,2))
+		dash_tween.parallel()
+		dash_tween.tween_property(trail, "modulate", Color(1,1,1), 1).from(Color(2,2,2))
